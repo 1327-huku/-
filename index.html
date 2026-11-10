@@ -430,7 +430,6 @@
         
         <div class="game-title">大学受験大量課題</div>
         
-        <!-- idを変更せず、JSでイベントを追加します -->
         <div class="big-button" id="main-tap-btn">
             <span class="big-button-text">勉強</span>
         </div>
@@ -439,7 +438,7 @@
 
     <!-- Navigation Tabs -->
     <nav>
-        <button class="tab-btn active" onclick="switchTab('facilities')">参考書 (12)</button>
+        <button class="tab-btn active" onclick="switchTab('facilities')">参考書 (18)</button>
         <button class="tab-btn" onclick="switchTab('skills')">効率化 (8)</button>
         <button class="tab-btn" onclick="switchTab('prestige')">転生</button>
     </nav>
@@ -489,28 +488,38 @@ const state = {
     legend: 0,
     totalLiteraEarned: 0,
     bulk: 1,
-    facilities: Array(12).fill(0),
+    facilities: Array(18).fill(0),
     skillCooldowns: {},
     activeSkills: {}
 };
 
-// Facility Definitions (12 Books)
+// Facility Definitions (18 Books: 7 Litera, 6 Prime, 5 Progress)
 const FACILITIES = [
+    // リテラ (英語・文系)
     { id: 0, name: "ターゲット1900", currency: "litera", baseCost: 15, baseProd: 1, color: "var(--litera-color)" },
-    { id: 1, name: "ビジョンクエスト", currency: "litera", baseCost: 100, baseProd: 8, color: "var(--litera-color)" },
-    { id: 2, name: "アルティメット", currency: "litera", baseCost: 1100, baseProd: 47, color: "var(--litera-color)" },
-    { id: 3, name: "東大英語", currency: "litera", baseCost: 12000, baseProd: 260, color: "var(--litera-color)" },
-    { id: 4, name: "白チャート", currency: "prime", baseCost: 15, baseProd: 1, color: "var(--prime-color)" },
-    { id: 5, name: "黄チャート", currency: "prime", baseCost: 100, baseProd: 8, color: "var(--prime-color)" },
-    { id: 6, name: "青チャート", currency: "prime", baseCost: 1100, baseProd: 47, color: "var(--prime-color)" },
-    { id: 7, name: "赤チャート", currency: "prime", baseCost: 12000, baseProd: 260, color: "var(--prime-color)" },
-    { id: 8, name: "古文単語345", currency: "progress", baseCost: 15, baseProd: 1, color: "var(--progress-color)" },
-    { id: 9, name: "明快古典文法", currency: "progress", baseCost: 100, baseProd: 8, color: "var(--progress-color)" },
-    { id: 10, name: "ちくま小説選", currency: "progress", baseCost: 1100, baseProd: 47, color: "var(--progress-color)" },
-    { id: 11, name: "名問の森", currency: "progress", baseCost: 12000, baseProd: 260, color: "var(--progress-color)" }
+    { id: 1, name: "システム英単語", currency: "litera", baseCost: 150, baseProd: 12, color: "var(--litera-color)" },
+    { id: 2, name: "速読英単語", currency: "litera", baseCost: 1500, baseProd: 100, color: "var(--litera-color)" },
+    { id: 3, name: "ビジョンクエスト", currency: "litera", baseCost: 18000, baseProd: 850, color: "var(--litera-color)" },
+    { id: 4, name: "アルティメット", currency: "litera", baseCost: 250000, baseProd: 8000, color: "var(--litera-color)" },
+    { id: 5, name: "東大英語", currency: "litera", baseCost: 4000000, baseProd: 65000, color: "var(--litera-color)" },
+    { id: 6, name: "鉄壁", currency: "litera", baseCost: 80000000, baseProd: 800000, color: "var(--litera-color)" },
+
+    // プライム (数学・理科)
+    { id: 7, name: "リードα", currency: "prime", baseCost: 15, baseProd: 1, color: "var(--prime-color)" },
+    { id: 8, name: "白チャート", currency: "prime", baseCost: 200, baseProd: 15, color: "var(--prime-color)" },
+    { id: 9, name: "黄チャート", currency: "prime", baseCost: 3500, baseProd: 220, color: "var(--prime-color)" },
+    { id: 10, name: "青チャート", currency: "prime", baseCost: 50000, baseProd: 2500, color: "var(--prime-color)" },
+    { id: 11, name: "赤チャート", currency: "prime", baseCost: 800000, baseProd: 25000, color: "var(--prime-color)" },
+    { id: 12, name: "やさしい理系数学", currency: "prime", baseCost: 15000000, baseProd: 200000, color: "var(--prime-color)" },
+
+    // プログレス (国語・総合)
+    { id: 13, name: "古文単語345", currency: "progress", baseCost: 15, baseProd: 1, color: "var(--progress-color)" },
+    { id: 14, name: "明快古典文法", currency: "progress", baseCost: 300, baseProd: 20, color: "var(--progress-color)" },
+    { id: 15, name: "ちくま小説選", currency: "progress", baseCost: 7000, baseProd: 350, color: "var(--progress-color)" },
+    { id: 16, name: "名問の森", currency: "progress", baseCost: 120000, baseProd: 4500, color: "var(--progress-color)" },
+    { id: 17, name: "赤本", currency: "progress", baseCost: 3000000, baseProd: 75000, color: "var(--progress-color)" }
 ];
 
-// 通貨ごとの対応カラー指定
 const CURRENCY_COLORS = {
     litera: "var(--litera-color)",
     prime: "var(--prime-color)",
@@ -559,7 +568,6 @@ function getGlobalBoost() {
 }
 
 function getTapPower() {
-    // 施設購入が進むとタップも強くなる仕様（基本生産量の5%を加算）
     let baseLiteraProd = 0;
     FACILITIES.forEach(fac => {
         if (fac.currency === "litera") {
@@ -611,7 +619,7 @@ function getBulkCost(fac, amount) {
     }
 }
 
-// --- 超軽量のヘッダー更新専用関数（タップ連打時の処理落ちを防ぐため） ---
+// --- 超軽量のヘッダー更新専用関数 ---
 function updateHeaderNumbers() {
     document.getElementById("val-litera").textContent = format(state.litera);
     document.getElementById("val-prime").textContent = format(state.prime);
@@ -621,7 +629,7 @@ function updateHeaderNumbers() {
 
 // --- 全体のUI更新処理 ---
 function renderUI() {
-    updateHeaderNumbers(); // 上部の数値更新
+    updateHeaderNumbers();
 
     const rates = getProductionRates();
     document.getElementById("rate-litera").textContent = `${format(rates.litera)}/s`;
@@ -713,15 +721,14 @@ function renderUI() {
     document.getElementById("prestige-btn").disabled = (pendingLegend <= 0);
 }
 
-// --- 修正: 超高速反応するタップ処理 ---
+// --- タップ処理 ---
 function tap(e) {
-    if (e && e.cancelable) e.preventDefault(); // スマホのズームやスクロールなどの誤作動をブロック
+    if (e && e.cancelable) e.preventDefault(); 
     
     const power = getTapPower();
     state.litera += power;
     state.totalLiteraEarned += power;
 
-    // クリックエフェクトの表示
     const rect = document.getElementById("main-tap-btn").getBoundingClientRect();
     let x, y;
     if (e && (e.clientX || e.touches)) {
@@ -741,7 +748,6 @@ function tap(e) {
 
     setTimeout(() => txt.remove(), 800);
     
-    // ★ リスト全体ではなく、上部の数値「だけ」を即座に更新 (激軽)
     updateHeaderNumbers();
 }
 
@@ -781,7 +787,7 @@ function doPrestige() {
         state.litera = 0;
         state.prime = 0;
         state.progress = 0;
-        state.facilities = Array(12).fill(0);
+        state.facilities = Array(18).fill(0);
         state.activeSkills = {};
         renderUI();
     }
@@ -803,14 +809,14 @@ function switchTab(tabId) {
 }
 
 function devCheat() {
-    state.litera += 1000000;
-    state.prime += 1000000;
-    state.progress += 1000000;
-    state.totalLiteraEarned += 1000000;
+    state.litera += 100000000;
+    state.prime += 100000000;
+    state.progress += 100000000;
+    state.totalLiteraEarned += 100000000;
     renderUI();
 }
 
-// --- Main Loop (フリーズ対策版) ---
+// --- Main Loop ---
 let lastTime = performance.now();
 let lastRenderTime = 0;
 
@@ -830,23 +836,19 @@ function gameLoop(now) {
         }
     }
 
-    // ★ 重いリストの更新処理を1秒間に10回（100msに1回）に制限し、スマホの負荷を劇的に下げる
     if (now - lastRenderTime > 100) {
         renderUI();
         lastRenderTime = now;
     } else {
-        // リストを更新しないフレームでも、数字だけは滑らかに動かす
         updateHeaderNumbers();
     }
 
     requestAnimationFrame(gameLoop);
 }
 
-// Init & 最強のタップイベント登録
+// Init & Events
 const mainBtn = document.getElementById("main-tap-btn");
-// pointerdown: スマホ・PC問わず触れた瞬間に超高速反応するイベント
 mainBtn.addEventListener("pointerdown", tap);
-// 念のための古いiOS Safari対策
 mainBtn.addEventListener("touchstart", (e) => { if(e.cancelable) e.preventDefault(); }, {passive: false});
 
 renderUI();
