@@ -20,8 +20,8 @@
             --legend-color: #eab308;    /* Gold */
             
             /* UI Elements */
-            --accent-cyan: #00f3ff;     /* Tap / Active Neon */
-            --text-main: #ffffff;       /* 施設名・値段用の純白 */
+            --accent-cyan: #00f3ff;     
+            --text-main: #ffffff;       
             --text-sub: #9ca3af;
         }
 
@@ -31,7 +31,6 @@
             padding: 0;
             user-select: none;
             -webkit-user-select: none;
-            touch-action: manipulation; /* 高速連打の空振り・ズームバグを防止 */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -158,6 +157,8 @@
             align-items: center;
             cursor: pointer;
             transition: transform 0.05s, box-shadow 0.1s;
+            /* ★ スマホのズームやスクロール判定を完全に無効化 */
+            touch-action: none; 
         }
 
         .big-button:active {
@@ -171,6 +172,7 @@
             color: #ffffff;
             letter-spacing: 2px;
             text-shadow: 0 0 10px var(--accent-cyan);
+            pointer-events: none; /* テキストがタップの邪魔をしないようにする */
         }
 
         .active-effects-bar {
@@ -284,7 +286,7 @@
             overflow: hidden;
         }
 
-        .card-info { flex: 1; }
+        .card-info { flex: 1; pointer-events: none; }
         .card-title {
             font-size: 14px;
             font-weight: 800;
@@ -309,6 +311,7 @@
             min-width: 45px;
             text-align: right;
             padding-left: 10px;
+            pointer-events: none;
         }
 
         .buy-btn {
@@ -427,6 +430,7 @@
         
         <div class="game-title">大学受験大量課題</div>
         
+        <!-- idを変更せず、JSでイベントを追加します -->
         <div class="big-button" id="main-tap-btn">
             <span class="big-button-text">勉強</span>
         </div>
@@ -555,7 +559,7 @@ function getGlobalBoost() {
 }
 
 function getTapPower() {
-    // 施設購入が進むとタップが弱すぎる問題を解決（リテラ基本生産量の5%を加算）
+    // 施設購入が進むとタップも強くなる仕様（基本生産量の5%を加算）
     let baseLiteraProd = 0;
     FACILITIES.forEach(fac => {
         if (fac.currency === "litera") {
@@ -607,12 +611,17 @@ function getBulkCost(fac, amount) {
     }
 }
 
-// --- UI Rendering ---
-function renderUI() {
+// --- 超軽量のヘッダー更新専用関数（タップ連打時の処理落ちを防ぐため） ---
+function updateHeaderNumbers() {
     document.getElementById("val-litera").textContent = format(state.litera);
     document.getElementById("val-prime").textContent = format(state.prime);
     document.getElementById("val-progress").textContent = format(state.progress);
     document.getElementById("val-legend").textContent = format(state.legend);
+}
+
+// --- 全体のUI更新処理 ---
+function renderUI() {
+    updateHeaderNumbers(); // 上部の数値更新
 
     const rates = getProductionRates();
     document.getElementById("rate-litera").textContent = `${format(rates.litera)}/s`;
@@ -704,15 +713,24 @@ function renderUI() {
     document.getElementById("prestige-btn").disabled = (pendingLegend <= 0);
 }
 
-// --- User Actions ---
+// --- 修正: 超高速反応するタップ処理 ---
 function tap(e) {
+    if (e && e.cancelable) e.preventDefault(); // スマホのズームやスクロールなどの誤作動をブロック
+    
     const power = getTapPower();
     state.litera += power;
     state.totalLiteraEarned += power;
 
-    const rect = e.target.getBoundingClientRect();
-    const x = e.clientX || (rect.left + rect.width / 2);
-    const y = e.clientY || (rect.top + rect.height / 2);
+    // クリックエフェクトの表示
+    const rect = document.getElementById("main-tap-btn").getBoundingClientRect();
+    let x, y;
+    if (e && (e.clientX || e.touches)) {
+        x = e.clientX || (e.touches && e.touches[0].clientX) || (rect.left + rect.width / 2);
+        y = e.clientY || (e.touches && e.touches[0].clientY) || (rect.top + rect.height / 2);
+    } else {
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+    }
 
     const txt = document.createElement("div");
     txt.className = "click-text";
@@ -722,7 +740,9 @@ function tap(e) {
     document.body.appendChild(txt);
 
     setTimeout(() => txt.remove(), 800);
-    renderUI();
+    
+    // ★ リスト全体ではなく、上部の数値「だけ」を即座に更新 (激軽)
+    updateHeaderNumbers();
 }
 
 function buyFacility(id) {
@@ -790,8 +810,10 @@ function devCheat() {
     renderUI();
 }
 
-// --- Main Loop ---
+// --- Main Loop (フリーズ対策版) ---
 let lastTime = performance.now();
+let lastRenderTime = 0;
+
 function gameLoop(now) {
     const dt = (now - lastTime) / 1000;
     lastTime = now;
@@ -808,12 +830,25 @@ function gameLoop(now) {
         }
     }
 
-    renderUI();
+    // ★ 重いリストの更新処理を1秒間に10回（100msに1回）に制限し、スマホの負荷を劇的に下げる
+    if (now - lastRenderTime > 100) {
+        renderUI();
+        lastRenderTime = now;
+    } else {
+        // リストを更新しないフレームでも、数字だけは滑らかに動かす
+        updateHeaderNumbers();
+    }
+
     requestAnimationFrame(gameLoop);
 }
 
-// Init
-document.getElementById("main-tap-btn").addEventListener("click", tap);
+// Init & 最強のタップイベント登録
+const mainBtn = document.getElementById("main-tap-btn");
+// pointerdown: スマホ・PC問わず触れた瞬間に超高速反応するイベント
+mainBtn.addEventListener("pointerdown", tap);
+// 念のための古いiOS Safari対策
+mainBtn.addEventListener("touchstart", (e) => { if(e.cancelable) e.preventDefault(); }, {passive: false});
+
 renderUI();
 requestAnimationFrame(gameLoop);
 </script>
