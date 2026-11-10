@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大学受験大量の課題</title>
+    <title>アカシック・ワークブック</title>
     
-    <!-- iPhone Safari完全対応：URLエンコード済みの絵文字SVGアイコン -->
+    <!-- Safari用 アイコン対応（URLエンコード形式） -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%230b0f19%22%2F%3E%3Ctext%20y%3D%2275%22%20x%3D%2212%22%20font-size%3D%2270%22%3E%F0%9F%93%96%3C%2Ftext%3E%3C%2Fsvg%3E">
 
     <style>
@@ -56,15 +56,15 @@
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
-        /* --- Header: Currencies --- */
+        /* --- Header: Currencies (スマホのステータスバー対策で余白追加) --- */
         header {
-            padding: 16px 12px 12px;
-            background: rgba(11, 15, 25, 0.85);
+            padding: 36px 8px 10px; /* 上部に十分なマージンを確保 */
+            background: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
+            gap: 2px;
             text-align: center;
             z-index: 10;
         }
@@ -73,19 +73,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .currency-name {
             font-size: 10px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+            white-space: nowrap;
         }
 
         .currency-value {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
-            text-shadow: 0 0 8px currentColor;
+            text-shadow: 0 0 6px currentColor;
+            line-height: 1.1;
         }
 
         .currency-rate {
@@ -101,7 +104,7 @@
 
         /* --- Main Interactive Zone --- */
         .tap-zone {
-            padding: 24px 16px;
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -113,25 +116,25 @@
 
         .cheat-btn {
             position: absolute;
-            top: 12px;
+            top: 10px;
             right: 12px;
             background: linear-gradient(135deg, #a855f7, #ff66cc);
             color: #fff;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 12px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(255, 102, 204, 0.5);
+            box-shadow: 0 0 10px rgba(255, 102, 204, 0.5);
             transition: transform 0.1s;
             z-index: 5;
         }
         .cheat-btn:active { transform: scale(0.92); }
 
         .big-button {
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, rgba(11, 15, 25, 0.8) 70%);
             border: 3px solid var(--accent-cyan);
@@ -149,7 +152,7 @@
         }
 
         .big-button-text {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 2px;
@@ -157,16 +160,16 @@
         }
 
         .active-effects-bar {
-            margin-top: 12px;
-            min-height: 20px;
+            margin-top: 10px;
+            min-height: 18px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .effect-badge {
-            font-size: 10px;
+            font-size: 9px;
             padding: 2px 8px;
             border-radius: 10px;
             background: rgba(0, 243, 255, 0.15);
@@ -247,7 +250,7 @@
             box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
         }
 
-        /* Items / Facilities List */
+        /* Items / Facilities / Skills List */
         .card-list {
             display: flex;
             flex-direction: column;
@@ -322,8 +325,7 @@
         }
 
         .skill-card.is-active {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px currentColor;
         }
 
         .skill-progress-bar {
@@ -331,10 +333,8 @@
             bottom: 0;
             left: 0;
             height: 3px;
-            background: var(--accent-cyan);
             width: 0%;
             transition: width 0.1s linear;
-            box-shadow: 0 0 8px var(--accent-cyan);
         }
 
         /* Floating Tap Text */
@@ -491,6 +491,14 @@ const FACILITIES = [
     { id: 11, name: "名問の森", currency: "progress", baseCost: 12000, baseProd: 260, color: "var(--progress-color)" }
 ];
 
+// 通貨ごとの対応カラー指定
+const CURRENCY_COLORS = {
+    litera: "var(--litera-color)",
+    prime: "var(--prime-color)",
+    progress: "var(--progress-color)",
+    legend: "var(--legend-color)"
+};
+
 // 8 Efficiency Skills
 const SKILLS = [
     { id: 0, name: "集中暗記", costCurrency: "litera", cost: 50, duration: 10, type: "clickBoost", power: 5, desc: "10秒間、タップ獲得量が 5倍 に上昇" },
@@ -601,6 +609,7 @@ function renderUI() {
         }
     }
 
+    // Facilities
     const facList = document.getElementById("facilities-list");
     facList.innerHTML = "";
     FACILITIES.forEach(fac => {
@@ -625,15 +634,18 @@ function renderUI() {
         facList.appendChild(card);
     });
 
+    // Skills (通貨の色と完全同期)
     const skillList = document.getElementById("skills-list");
     skillList.innerHTML = "";
     SKILLS.forEach(sk => {
         const isActive = (state.activeSkills[sk.id] || 0) > 0;
         const activeTimer = state.activeSkills[sk.id] || 0;
         const canAfford = (state[sk.costCurrency] >= sk.cost);
+        const skillColor = CURRENCY_COLORS[sk.costCurrency] || 'var(--accent-cyan)';
 
         const card = document.createElement("div");
         card.className = `skill-card ${isActive ? 'is-active' : ''}`;
+        if(isActive) card.style.color = skillColor;
         
         let pct = 0;
         if (isActive) {
@@ -642,17 +654,17 @@ function renderUI() {
 
         card.innerHTML = `
             <div class="card-info">
-                <div class="card-title" style="color: var(--accent-cyan)">
+                <div class="card-title" style="color: ${skillColor}">
                     ${sk.name} 
-                    ${isActive ? `<span style="font-size:10px; color:var(--accent-cyan);">効果発動中 (${Math.ceil(activeTimer)}s)</span>` : ''}
+                    ${isActive ? `<span style="font-size:10px;">効果発動中 (${Math.ceil(activeTimer)}s)</span>` : ''}
                 </div>
                 <div class="card-sub">${sk.desc}</div>
                 <div class="card-cost" style="margin-top:4px;">Cost: ${format(sk.cost)} ${sk.costCurrency.toUpperCase()}</div>
             </div>
-            <button class="buy-btn" style="background: var(--accent-cyan); color: #000;" ${(!isActive && canAfford) ? '' : 'disabled'} onclick="useSkill(${sk.id})">
+            <button class="buy-btn" style="background: ${skillColor}; color: #000;" ${(!isActive && canAfford) ? '' : 'disabled'} onclick="useSkill(${sk.id})">
                 ${isActive ? '発動中' : '発動'}
             </button>
-            <div class="skill-progress-bar" style="width: ${pct}%"></div>
+            <div class="skill-progress-bar" style="width: ${pct}%; background: ${skillColor}; box-shadow: 0 0 8px ${skillColor};"></div>
         `;
         skillList.appendChild(card);
     });
