@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アカシック・ワークブック</title>
     
-    <!-- 絵文字SVGを使った画像不要のホーム画面アイコン設定 -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f19'/><text y='75' x='12' font-size='70'>📖</text></svg>">
+    <!-- iPhone Safari完全対応：URLエンコード済みの絵文字SVGアイコン -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%230b0f19%22%2F%3E%3Ctext%20y%3D%2275%22%20x%3D%2212%22%20font-size%3D%2270%22%3E%F0%9F%93%96%3C%2Ftext%3E%3C%2Fsvg%3E">
 
     <style>
         :root {
@@ -519,9 +519,7 @@ function format(num) {
 
 // --- Calculation Core ---
 function getGlobalBoost() {
-    let boost = 1 + (state.legend * 1.0); // +100% per legend point
-    
-    // Skill boosters
+    let boost = 1 + (state.legend * 1.0);
     for (const [id, timer] of Object.entries(state.activeSkills)) {
         if (timer > 0) {
             const sk = SKILLS[id];
@@ -536,7 +534,6 @@ function getGlobalBoost() {
 function getTapPower() {
     let base = 1;
     let clickBoost = 1;
-    
     for (const [id, timer] of Object.entries(state.activeSkills)) {
         if (timer > 0) {
             const sk = SKILLS[id];
@@ -551,22 +548,18 @@ function getTapPower() {
 function getProductionRates() {
     const rates = { litera: 0, prime: 0, progress: 0 };
     const boost = getGlobalBoost();
-    
     FACILITIES.forEach(fac => {
         const count = state.facilities[fac.id] || 0;
         if (count > 0) {
             rates[fac.currency] += fac.baseProd * count * boost;
         }
     });
-    
     return rates;
 }
 
-// Geometric Series Cost Calculation
 function getBulkCost(fac, amount) {
     const current = state.facilities[fac.id] || 0;
     const r = 1.15;
-    
     if (amount === "MAX") {
         const userBalance = state[fac.currency] || 0;
         if (userBalance < fac.baseCost * Math.pow(r, current)) {
@@ -585,7 +578,6 @@ function getBulkCost(fac, amount) {
 
 // --- UI Rendering ---
 function renderUI() {
-    // Header Currencies
     document.getElementById("val-litera").textContent = format(state.litera);
     document.getElementById("val-prime").textContent = format(state.prime);
     document.getElementById("val-progress").textContent = format(state.progress);
@@ -597,7 +589,6 @@ function renderUI() {
     document.getElementById("rate-progress").textContent = `${format(rates.progress)}/s`;
     document.getElementById("rate-boost").textContent = `+${format(state.legend * 100)}%`;
 
-    // Render Active Effects Bar
     const effectsBar = document.getElementById("active-effects-bar");
     effectsBar.innerHTML = "";
     for (const [id, timer] of Object.entries(state.activeSkills)) {
@@ -610,7 +601,6 @@ function renderUI() {
         }
     }
 
-    // Render Facilities
     const facList = document.getElementById("facilities-list");
     facList.innerHTML = "";
     FACILITIES.forEach(fac => {
@@ -635,7 +625,6 @@ function renderUI() {
         facList.appendChild(card);
     });
 
-    // Render Skills
     const skillList = document.getElementById("skills-list");
     skillList.innerHTML = "";
     SKILLS.forEach(sk => {
@@ -668,7 +657,6 @@ function renderUI() {
         skillList.appendChild(card);
     });
 
-    // Prestige Update
     const pendingLegend = Math.floor(Math.pow(state.totalLiteraEarned / 1e6, 0.5));
     document.getElementById("pending-legend").textContent = `+${format(pendingLegend)}`;
     document.getElementById("prestige-btn").disabled = (pendingLegend <= 0);
@@ -766,14 +754,12 @@ function gameLoop(now) {
     const dt = (now - lastTime) / 1000;
     lastTime = now;
 
-    // Production Tick
     const rates = getProductionRates();
     state.litera += rates.litera * dt;
     state.prime += rates.prime * dt;
     state.progress += rates.progress * dt;
     state.totalLiteraEarned += rates.litera * dt;
 
-    // Skill Timers
     for (const [id, timer] of Object.entries(state.activeSkills)) {
         if (timer > 0) {
             state.activeSkills[id] = Math.max(0, timer - dt);
