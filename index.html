@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大量の課題</title>
+    <title>アカシック・ワークブック</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -568,7 +568,6 @@ function getBulkCost(fac, amount) {
         if (userBalance < fac.baseCost * Math.pow(r, current)) {
             return { count: 1, cost: fac.baseCost * Math.pow(r, current) };
         }
-        // max n formula
         let n = Math.floor(Math.log(1 + (userBalance * (r - 1)) / (fac.baseCost * Math.pow(r, current))) / Math.log(r));
         n = Math.max(1, n);
         const cost = fac.baseCost * (Math.pow(r, current) * (Math.pow(r, n) - 1)) / (r - 1);
@@ -677,7 +676,6 @@ function tap(e) {
     state.litera += power;
     state.totalLiteraEarned += power;
 
-    // Floating text
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX || (rect.left + rect.width / 2);
     const y = e.clientY || (rect.top + rect.height / 2);
