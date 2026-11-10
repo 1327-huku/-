@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカシック・ワークブック</title>
+    <title>大学受験大量課題</title>
     
-    <!-- Safari用 アイコン対応（URLエンコード形式） -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%230b0f19%22%2F%3E%3Ctext%20y%3D%2275%22%20x%3D%2212%22%20font-size%3D%2270%22%3E%F0%9F%93%96%3C%2Ftext%3E%3C%2Fsvg%3E">
 
     <style>
@@ -56,9 +55,9 @@
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
-        /* --- Header: Currencies (スマホのステータスバー対策で余白追加) --- */
+        /* --- Header: Currencies --- */
         header {
-            padding: 36px 8px 10px; /* 上部に十分なマージンを確保 */
+            padding: 36px 8px 10px;
             background: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
@@ -112,6 +111,19 @@
             position: relative;
             background: rgba(0,0,0,0.2);
             border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Stylish Title */
+        .game-title {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00f3ff, #ff66cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            text-align: center;
         }
 
         .cheat-btn {
@@ -280,7 +292,6 @@
         }
         .card-sub {
             font-size: 11px;
-            color: var(--text-sub);
         }
         .card-cost {
             font-size: 11px;
@@ -409,6 +420,10 @@
     <!-- Main Tap Zone -->
     <div class="tap-zone" id="tap-zone">
         <button class="cheat-btn" onclick="devCheat()">[DEV] +1M CHEAT</button>
+        
+        <!-- 追加：スタイリッシュなタイトル -->
+        <div class="game-title">大学受験大量課題</div>
+        
         <div class="big-button" id="main-tap-btn">
             <span class="big-button-text">勉強</span>
         </div>
@@ -474,17 +489,14 @@ const state = {
 
 // Facility Definitions (12 Books)
 const FACILITIES = [
-    // Litera (Pink)
     { id: 0, name: "ターゲット1900", currency: "litera", baseCost: 15, baseProd: 1, color: "var(--litera-color)" },
     { id: 1, name: "ビジョンクエスト", currency: "litera", baseCost: 100, baseProd: 8, color: "var(--litera-color)" },
     { id: 2, name: "アルティメット", currency: "litera", baseCost: 1100, baseProd: 47, color: "var(--litera-color)" },
     { id: 3, name: "東大英語", currency: "litera", baseCost: 12000, baseProd: 260, color: "var(--litera-color)" },
-    // Prime (Purple)
     { id: 4, name: "白チャート", currency: "prime", baseCost: 15, baseProd: 1, color: "var(--prime-color)" },
     { id: 5, name: "黄チャート", currency: "prime", baseCost: 100, baseProd: 8, color: "var(--prime-color)" },
     { id: 6, name: "青チャート", currency: "prime", baseCost: 1100, baseProd: 47, color: "var(--prime-color)" },
     { id: 7, name: "赤チャート", currency: "prime", baseCost: 12000, baseProd: 260, color: "var(--prime-color)" },
-    // Progress (Olive Green)
     { id: 8, name: "古文単語345", currency: "progress", baseCost: 15, baseProd: 1, color: "var(--progress-color)" },
     { id: 9, name: "明快古典文法", currency: "progress", baseCost: 100, baseProd: 8, color: "var(--progress-color)" },
     { id: 10, name: "ちくま小説選", currency: "progress", baseCost: 1100, baseProd: 47, color: "var(--progress-color)" },
@@ -609,7 +621,7 @@ function renderUI() {
         }
     }
 
-    // Facilities
+    // Facilities (すべての文字色をfac.colorに統一)
     const facList = document.getElementById("facilities-list");
     facList.innerHTML = "";
     FACILITIES.forEach(fac => {
@@ -619,10 +631,12 @@ function renderUI() {
 
         const card = document.createElement("div");
         card.className = "card";
+        // 買えない時は不透明度を下げる
+        card.style.opacity = canBuy ? '1' : '0.6';
         card.innerHTML = `
-            <div class="card-info">
-                <div class="card-title" style="color: ${fac.color}">${fac.name} <span style="font-size:10px; opacity:0.8;">(+${format(fac.baseProd)}/s)</span></div>
-                <div class="card-cost" style="color: ${canBuy ? 'var(--text-main)' : 'var(--text-sub)'}">
+            <div class="card-info" style="color: ${fac.color}">
+                <div class="card-title">${fac.name} <span style="font-size:10px; opacity:0.8;">(+${format(fac.baseProd)}/s)</span></div>
+                <div class="card-cost" style="color: ${fac.color};">
                     Cost: ${format(cost)} ${fac.currency.toUpperCase()} (${state.bulk === 'MAX' ? 'x' + buyCount : 'x' + state.bulk})
                 </div>
             </div>
@@ -634,7 +648,7 @@ function renderUI() {
         facList.appendChild(card);
     });
 
-    // Skills (通貨の色と完全同期)
+    // Skills (すべての文字色をskillColorに統一)
     const skillList = document.getElementById("skills-list");
     skillList.innerHTML = "";
     SKILLS.forEach(sk => {
@@ -645,7 +659,8 @@ function renderUI() {
 
         const card = document.createElement("div");
         card.className = `skill-card ${isActive ? 'is-active' : ''}`;
-        if(isActive) card.style.color = skillColor;
+        if(isActive) card.style.boxShadow = `0 0 15px ${skillColor}`;
+        card.style.opacity = (!isActive && !canAfford) ? '0.6' : '1';
         
         let pct = 0;
         if (isActive) {
@@ -653,13 +668,13 @@ function renderUI() {
         }
 
         card.innerHTML = `
-            <div class="card-info">
-                <div class="card-title" style="color: ${skillColor}">
+            <div class="card-info" style="color: ${skillColor}">
+                <div class="card-title">
                     ${sk.name} 
-                    ${isActive ? `<span style="font-size:10px;">効果発動中 (${Math.ceil(activeTimer)}s)</span>` : ''}
+                    ${isActive ? `<span style="font-size:10px; opacity: 0.8;">効果発動中 (${Math.ceil(activeTimer)}s)</span>` : ''}
                 </div>
-                <div class="card-sub">${sk.desc}</div>
-                <div class="card-cost" style="margin-top:4px;">Cost: ${format(sk.cost)} ${sk.costCurrency.toUpperCase()}</div>
+                <div class="card-sub" style="color: ${skillColor}; opacity: 0.8;">${sk.desc}</div>
+                <div class="card-cost" style="margin-top:4px; color: ${skillColor};">Cost: ${format(sk.cost)} ${sk.costCurrency.toUpperCase()}</div>
             </div>
             <button class="buy-btn" style="background: ${skillColor}; color: #000;" ${(!isActive && canAfford) ? '' : 'disabled'} onclick="useSkill(${sk.id})">
                 ${isActive ? '発動中' : '発動'}
