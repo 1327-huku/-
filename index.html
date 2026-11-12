@@ -1,858 +1,1015 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大学受験大量課題</title>
-    
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%230b0f19%22%2F%3E%3Ctext%20y%3D%2275%22%20x%3D%2212%22%20font-size%3D%2270%22%3E%F0%9F%93%96%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <meta charset="UTF-8" />
+  <!-- viewport-fit=cover で iPhone のノッチ・下部バー領域まで適切にレイアウト -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="定期考査TODO" />
+  <meta name="theme-color" content="#1b365d" />
+  <title>第3回 定期考査 TODOリスト｜高校1年</title>
 
-    <style>
-        :root {
-            --bg-color: #0f172a; 
-            --panel-bg: rgba(30, 41, 59, 0.85); 
-            --border-color: rgba(255, 255, 255, 0.15);
-            
-            /* Currencies */
-            --litera-color: #ff66cc;    /* Pink */
-            --prime-color: #a855f7;     /* Purple */
-            --progress-color: #99cc33;  /* Olive Green */
-            --legend-color: #eab308;    /* Gold */
-            
-            /* UI Elements */
-            --accent-cyan: #00f3ff;     
-            --text-main: #ffffff;       
-            --text-sub: #9ca3af;
-        }
+  <!-- インラインSVGによるホーム画面用アプリアイコン（画像ファイル不要・ネイビー×ブルー） -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231b365d'/%3E%3Cstop offset='100%25' stop-color='%231e73be'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' fill='url(%23bg)'/%3E%3Crect x='34' y='30' width='112' height='124' rx='18' fill='%23ffffff'/%3E%3Crect x='62' y='20' width='56' height='18' rx='9' fill='%23f59e0b'/%3E%3Cpath d='M54 68 L66 80 L86 58' fill='none' stroke='%231e73be' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='64' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Cpath d='M54 102 L66 114 L86 92' fill='none' stroke='%2310b981' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='98' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Ccircle cx='66' cy='133' r='6' fill='%23f59e0b'/%3E%3Crect x='82' y='129' width='48' height='8' rx='4' fill='%2394a3b8'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231b365d'/%3E%3Cstop offset='100%25' stop-color='%231e73be'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='36' fill='url(%23bg)'/%3E%3Crect x='34' y='30' width='112' height='124' rx='18' fill='%23ffffff'/%3E%3Crect x='62' y='20' width='56' height='18' rx='9' fill='%23f59e0b'/%3E%3Cpath d='M54 68 L66 80 L86 58' fill='none' stroke='%231e73be' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='64' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Cpath d='M54 102 L66 114 L86 92' fill='none' stroke='%2310b981' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='98' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3C/svg%3E" />
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-user-select: none;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
+  <!-- Google Fonts: Inter & Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
-        #app {
-            width: 100%;
-            max-width: 480px;
-            height: 100vh;
-            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
+  <style>
+    /* ベーススタイル & iOS Safari バグ対策 */
+    html, body {
+      font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f0f4f8;
+      color: #1e293b;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
 
-        /* --- Header: Currencies --- */
-        header {
-            padding: 36px 8px 10px;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
-            text-align: center;
-            z-index: 10;
-        }
+    /* iPhone Safari でフォームタップ時に勝手な画面ズームが発生するのを防止（16px以上必須） */
+    input, select, textarea {
+      font-size: 16px !important;
+    }
 
-        .currency-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    /* セーフエリア（ノッチ・ホームバー）対応 */
+    .safe-top-header {
+      padding-top: calc(1rem + env(safe-area-inset-top));
+    }
+    .safe-bottom-body {
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    }
+    .safe-bottom-toast {
+      bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    }
 
-        .currency-name {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            margin-bottom: 2px;
-            white-space: nowrap;
-        }
+    /* ネイビー×ブルーのブランドカラー */
+    .navy-header {
+      background: linear-gradient(135deg, #1b365d 0%, #152b4a 100%);
+    }
+    .blue-day-banner {
+      background: linear-gradient(90deg, #1e73be 0%, #2684d6 100%);
+    }
 
-        .currency-value {
-            font-size: 14px;
-            font-weight: 800;
-            text-shadow: 0 0 6px currentColor;
-            line-height: 1.1;
-        }
+    /* 長い英文や記号のはみ出し防止 */
+    .wrap-anywhere {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
 
-        .currency-rate {
-            font-size: 9px;
-            color: var(--text-sub);
-            margin-top: 2px;
-        }
+    /* チェック完了時のスタイル */
+    .todo-row.is-done .todo-label {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+    .todo-row.is-done .todo-body {
+      opacity: 0.72;
+    }
 
-        .c-litera { color: var(--litera-color); }
-        .c-prime { color: var(--prime-color); }
-        .c-progress { color: var(--progress-color); }
-        .c-legend { color: var(--legend-color); }
-
-        /* --- Main Interactive Zone --- */
-        .tap-zone {
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: rgba(0,0,0,0.1);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        /* Stylish Title */
-        .game-title {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #00f3ff, #ff66cc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
-            text-align: center;
-        }
-
-        .cheat-btn {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            background: linear-gradient(135deg, #a855f7, #ff66cc);
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 102, 204, 0.5);
-            transition: transform 0.1s;
-            z-index: 5;
-        }
-        .cheat-btn:active { transform: scale(0.92); }
-
-        .big-button {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, rgba(15, 23, 42, 0.8) 70%);
-            border: 3px solid var(--accent-cyan);
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), inset 0 0 15px rgba(0, 243, 255, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.05s, box-shadow 0.1s;
-            /* ★ スマホのズームやスクロール判定を完全に無効化 */
-            touch-action: none; 
-        }
-
-        .big-button:active {
-            transform: scale(0.95);
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.8), inset 0 0 25px rgba(0, 243, 255, 0.5);
-        }
-
-        .big-button-text {
-            font-size: 20px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--accent-cyan);
-            pointer-events: none; /* テキストがタップの邪魔をしないようにする */
-        }
-
-        .active-effects-bar {
-            margin-top: 10px;
-            min-height: 18px;
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .effect-badge {
-            font-size: 9px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            background: rgba(0, 243, 255, 0.15);
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            font-weight: bold;
-        }
-
-        /* --- Navigation Tabs --- */
-        nav {
-            display: flex;
-            background: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 12px 0;
-            background: none;
-            border: none;
-            color: var(--text-sub);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            position: relative;
-            transition: color 0.2s;
-        }
-
-        .tab-btn.active {
-            color: var(--accent-cyan);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20%;
-            width: 60%;
-            height: 3px;
-            background: var(--accent-cyan);
-            border-radius: 3px 3px 0 0;
-            box-shadow: 0 0 8px var(--accent-cyan);
-        }
-
-        /* --- Content Panels --- */
-        .content-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 12px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 100%);
-        }
-
-        .panel { display: none; }
-        .panel.active { display: block; }
-
-        /* Bulk Controls */
-        .bulk-bar {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .bulk-btn {
-            flex: 1;
-            padding: 8px 0;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-sub);
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .bulk-btn.active {
-            background: rgba(0, 243, 255, 0.2);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-        }
-
-        /* Items / Facilities / Skills List */
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .card {
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-info { flex: 1; pointer-events: none; }
-        .card-title {
-            font-size: 14px;
-            font-weight: 800;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            color: var(--text-main); 
-        }
-        .card-sub {
-            font-size: 11px;
-        }
-        .card-cost {
-            font-size: 11px;
-            font-weight: 700;
-            margin-top: 4px;
-            color: var(--text-main);
-        }
-
-        .card-count {
-            font-size: 18px;
-            font-weight: 900;
-            min-width: 45px;
-            text-align: right;
-            padding-left: 10px;
-            pointer-events: none;
-        }
-
-        .buy-btn {
-            padding: 8px 14px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 800;
-            font-size: 12px;
-            cursor: pointer;
-            margin-left: 10px;
-            transition: opacity 0.2s, transform 0.1s;
-        }
-        .buy-btn:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-        .buy-btn:not(:disabled):active { transform: scale(0.95); }
-
-        /* Skill Cards */
-        .skill-card {
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 10px;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .skill-card.is-active {
-            box-shadow: 0 0 15px currentColor;
-        }
-
-        .skill-progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        /* Floating Tap Text */
-        .click-text {
-            position: absolute;
-            color: var(--accent-cyan);
-            font-size: 16px;
-            font-weight: 900;
-            pointer-events: none;
-            animation: floatUp 0.8s ease-out forwards;
-            text-shadow: 0 0 6px var(--accent-cyan);
-            z-index: 100;
-        }
-
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
-        }
-
-        /* Prestige Panel */
-        .prestige-box {
-            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(30, 41, 59, 0.8));
-            border: 1px solid var(--legend-color);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-        }
-
-        .prestige-btn {
-            width: 100%;
-            padding: 14px;
-            margin-top: 12px;
-            border-radius: 8px;
-            border: none;
-            background: linear-gradient(135deg, #eab308, #ca8a04);
-            color: #000;
-            font-weight: 900;
-            font-size: 15px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
-        }
-        .prestige-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
-    </style>
+    /* 横スクロールタブのスクロールバー非表示 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
-<body>
+<body class="safe-bottom-body antialiased selection:bg-sky-200 selection:text-slate-900">
 
-<div id="app">
-    <!-- Header: Currencies -->
-    <header>
-        <div class="currency-card">
-            <span class="currency-name c-litera">リテラ</span>
-            <span id="val-litera" class="currency-value c-litera">0</span>
-            <span id="rate-litera" class="currency-rate">0/s</span>
+  <!-- 統合スティッキーヘッダー（ヘッダー＋フィルターを1つにまとめ重なりバグを防止） -->
+  <div class="sticky top-0 z-30 shadow-md">
+    <header class="navy-header safe-top-header text-white px-4 pb-3.5">
+      <div class="max-w-2xl mx-auto">
+        <!-- タイトル＆今日の日付 -->
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <div class="flex items-center gap-2 text-xs text-sky-200 font-semibold">
+            <span class="bg-white/15 px-2 py-0.5 rounded-md">高校1年</span>
+            <span>2026年11月</span>
+          </div>
+          <span id="today-date-label" class="text-[11px] text-sky-200/90 font-medium"></span>
         </div>
-        <div class="currency-card">
-            <span class="currency-name c-prime">プライム</span>
-            <span id="val-prime" class="currency-value c-prime">0</span>
-            <span id="rate-prime" class="currency-rate">0/s</span>
+
+        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight leading-snug">
+          第3回 定期考査 TODOリスト
+        </h1>
+
+        <!-- リアルタイム自動カウントダウンバッジ -->
+        <div class="mt-2.5 flex flex-wrap items-center gap-2">
+          <div
+            id="countdown-badge"
+            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-extrabold text-white bg-[#e11d48] shadow-sm transition-colors duration-300"
+          >
+            <span id="countdown-text">カウントダウン計算中...</span>
+          </div>
         </div>
-        <div class="currency-card">
-            <span class="currency-name c-progress">プログレス</span>
-            <span id="val-progress" class="currency-value c-progress">0</span>
-            <span id="rate-progress" class="currency-rate">0/s</span>
+
+        <!-- 全体進捗プログレスバー -->
+        <div class="mt-3 bg-slate-950/35 rounded-xl p-2.5 sm:p-3 border border-white/10">
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="text-sky-100 font-semibold">全体の達成状況</span>
+            <span class="font-bold text-white">
+              完了 <span id="completed-count" class="text-emerald-300 text-sm">0</span> / <span id="total-count">0</span> 件
+              （<span id="progress-percent" class="text-amber-300">0%</span>）
+            </span>
+          </div>
+          <div class="w-full h-2.5 bg-slate-900/80 rounded-full overflow-hidden">
+            <div
+              id="progress-bar"
+              class="h-full bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full transition-all duration-300"
+              style="width: 0%"
+            ></div>
+          </div>
         </div>
-        <div class="currency-card">
-            <span class="currency-name c-legend">レジェンド (転生)</span>
-            <span id="val-legend" class="currency-value c-legend">0</span>
-            <span id="rate-boost" class="currency-rate">+0%</span>
-        </div>
+      </div>
     </header>
 
-    <!-- Main Tap Zone -->
-    <div class="tap-zone" id="tap-zone">
-        <button class="cheat-btn" onclick="devCheat()">[DEV] +1M CHEAT</button>
-        
-        <div class="game-title">大学受験大量課題</div>
-        
-        <div class="big-button" id="main-tap-btn">
-            <span class="big-button-text">勉強</span>
-        </div>
-        <div class="active-effects-bar" id="active-effects-bar"></div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <nav>
-        <button class="tab-btn active" onclick="switchTab('facilities')">参考書 (18)</button>
-        <button class="tab-btn" onclick="switchTab('skills')">効率化 (8)</button>
-        <button class="tab-btn" onclick="switchTab('prestige')">転生</button>
+    <!-- フィルタータブバー -->
+    <nav class="bg-white/95 backdrop-blur-xs border-b border-slate-200" aria-label="表示フィルター">
+      <div id="filter-tabs" class="max-w-2xl mx-auto px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <button
+          type="button"
+          data-filter="all"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-[#1e73be] text-white shadow-xs transition"
+        >
+          すべて
+        </button>
+        <button
+          type="button"
+          data-filter="incomplete"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+        >
+          未完了のみ
+        </button>
+        <button
+          type="button"
+          data-filter="submission"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100 transition"
+        >
+          🚨 提出課題のみ
+        </button>
+        <button
+          type="button"
+          data-filter="day1"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+        >
+          1日目 (11/18)
+        </button>
+        <button
+          type="button"
+          data-filter="day2"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+        >
+          2日目 (11/19)
+        </button>
+        <button
+          type="button"
+          data-filter="day3"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+        >
+          3日目 (11/20)
+        </button>
+      </div>
     </nav>
+  </div>
 
-    <!-- Content Area -->
-    <div class="content-area">
-        <!-- Facilities Panel -->
-        <div id="panel-facilities" class="panel active">
-            <div class="bulk-bar">
-                <button class="bulk-btn active" onclick="setBulk(1, this)">x1</button>
-                <button class="bulk-btn" onclick="setBulk(10, this)">x10</button>
-                <button class="bulk-btn" onclick="setBulk(100, this)">x100</button>
-                <button class="bulk-btn" onclick="setBulk('MAX', this)">MAX</button>
-            </div>
-            <div class="card-list" id="facilities-list"></div>
+  <!-- メインTODOリスト表示エリア -->
+  <main id="todo-container" class="max-w-2xl mx-auto px-3 sm:px-4 pt-4 space-y-5"></main>
+
+  <!-- 範囲・TODO追記フォーム（言語文化の未確認範囲判明時などに使用） -->
+  <section class="max-w-2xl mx-auto px-3 sm:px-4 mt-6">
+    <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-xs border border-slate-200">
+      <h2 class="text-sm sm:text-base font-extrabold text-[#1b365d] mb-1 flex items-center gap-1.5">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#1e73be] text-white text-xs">＋</span>
+        試験範囲・TODOを追記する
+      </h2>
+      <p class="text-xs text-slate-500 mb-3">
+        未確認だった「言語文化」の試験範囲が分かった時や、自分の復習タスクを追加したい時に使えます。
+      </p>
+
+      <form id="add-todo-form" class="space-y-3">
+        <div>
+          <label for="new-category" class="block text-xs font-bold text-slate-600 mb-1">追加先の科目・区分</label>
+          <select
+            id="new-category"
+            class="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#1e73be] focus:border-[#1e73be]"
+          >
+            <option value="day1-gengo" selected>1日目（11/18）：言語文化</option>
+            <option value="day1-ronri">1日目（11/18）：論理・表現I</option>
+            <option value="day1-butsuri">1日目（11/18）：SS物理</option>
+            <option value="day2-sugaku">2日目（11/19）：SS数学</option>
+            <option value="day2-seibutsu">2日目（11/19）：SS生物（生物基礎）</option>
+            <option value="day3-gendaibun">3日目（11/20）：現代の国語</option>
+            <option value="day3-eigo">3日目（11/20）：英語コミュニケーションI</option>
+            <option value="submission">🚨 提出課題・注意事項</option>
+          </select>
         </div>
 
-        <!-- Skills Panel -->
-        <div id="panel-skills" class="panel">
-            <div class="card-list" id="skills-list"></div>
+        <div>
+          <label for="new-text" class="block text-xs font-bold text-slate-600 mb-1">内容</label>
+          <input
+            type="text"
+            id="new-text"
+            placeholder="例：言語文化 教科書 p.10〜28 漢文句法"
+            maxlength="140"
+            class="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e73be] focus:border-[#1e73be]"
+          />
         </div>
 
-        <!-- Prestige Panel -->
-        <div id="panel-prestige" class="panel">
-            <div class="prestige-box">
-                <h3 style="color: var(--legend-color); margin-bottom: 8px;">叡智の継承（転生）</h3>
-                <p style="font-size: 12px; color: var(--text-sub); line-height: 1.5;">
-                    すべての参考書と通常通貨をリセットし、<b>レジェンドポイント</b>を獲得します。<br>
-                    1 レジェンドポイントにつき<b>全生産力が +100% 永続ブースト</b>されます。
-                </p>
-                <div style="margin: 16px 0;">
-                    <div style="font-size: 13px;">獲得可能レジェンド: <b id="pending-legend" class="c-legend" style="font-size: 18px;">+0</b></div>
-                    <div style="font-size: 11px; color: var(--text-sub); margin-top: 4px;">(必要累計リテラ: 1.00M〜)</div>
-                </div>
-                <button id="prestige-btn" class="prestige-btn" onclick="doPrestige()" disabled>転生を実行する</button>
-            </div>
-        </div>
+        <button
+          type="submit"
+          class="w-full min-h-[46px] bg-[#1e73be] hover:bg-[#175b96] active:scale-[0.99] text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-xs transition"
+        >
+          TODOリストに追加する
+        </button>
+      </form>
     </div>
-</div>
 
-<script>
-// --- Game State & Data ---
-const state = {
-    litera: 0,
-    prime: 0,
-    progress: 0,
-    legend: 0,
-    totalLiteraEarned: 0,
-    bulk: 1,
-    facilities: Array(18).fill(0),
-    skillCooldowns: {},
-    activeSkills: {}
-};
+    <!-- フッター操作（リセットボタン） -->
+    <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 px-1 text-xs text-slate-500">
+      <span>※チェック状態と追加項目はこのスマホ内に自動保存されます</span>
+      <button
+        id="reset-btn"
+        type="button"
+        class="min-h-[40px] px-3.5 py-2 rounded-xl border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold transition"
+      >
+        チェック全リセット（初期状態に戻す）
+      </button>
+    </div>
+  </section>
 
-// Facility Definitions (18 Books: 7 Litera, 6 Prime, 5 Progress)
-const FACILITIES = [
-    // リテラ (英語・文系)
-    { id: 0, name: "ターゲット1900", currency: "litera", baseCost: 15, baseProd: 1, color: "var(--litera-color)" },
-    { id: 1, name: "システム英単語", currency: "litera", baseCost: 150, baseProd: 12, color: "var(--litera-color)" },
-    { id: 2, name: "速読英単語", currency: "litera", baseCost: 1500, baseProd: 100, color: "var(--litera-color)" },
-    { id: 3, name: "ビジョンクエスト", currency: "litera", baseCost: 18000, baseProd: 850, color: "var(--litera-color)" },
-    { id: 4, name: "アルティメット", currency: "litera", baseCost: 250000, baseProd: 8000, color: "var(--litera-color)" },
-    { id: 5, name: "東大英語", currency: "litera", baseCost: 4000000, baseProd: 65000, color: "var(--litera-color)" },
-    { id: 6, name: "鉄壁", currency: "litera", baseCost: 80000000, baseProd: 800000, color: "var(--litera-color)" },
+  <!-- 確認モーダル（window.confirm() の安全な代替UI） -->
+  <div
+    id="confirm-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4"
+  >
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-200">
+      <h3 id="modal-title" class="text-base font-extrabold text-[#1b365d] mb-2">
+        チェック全リセットの確認
+      </h3>
+      <p class="text-xs text-slate-600 leading-relaxed mb-5">
+        すべてのチェック状態と自分で追加したTODOを削除し、初期状態に戻しますか？（この操作は元に戻せません）
+      </p>
+      <div class="flex items-center justify-end gap-2.5">
+        <button
+          id="modal-cancel"
+          type="button"
+          class="min-h-[42px] px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition"
+        >
+          キャンセル
+        </button>
+        <button
+          id="modal-confirm"
+          type="button"
+          class="min-h-[42px] px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 text-white hover:bg-rose-700 transition"
+        >
+          リセットする
+        </button>
+      </div>
+    </div>
+  </div>
 
-    // プライム (数学・理科)
-    { id: 7, name: "リードα", currency: "prime", baseCost: 15, baseProd: 1, color: "var(--prime-color)" },
-    { id: 8, name: "白チャート", currency: "prime", baseCost: 200, baseProd: 15, color: "var(--prime-color)" },
-    { id: 9, name: "黄チャート", currency: "prime", baseCost: 3500, baseProd: 220, color: "var(--prime-color)" },
-    { id: 10, name: "青チャート", currency: "prime", baseCost: 50000, baseProd: 2500, color: "var(--prime-color)" },
-    { id: 11, name: "赤チャート", currency: "prime", baseCost: 800000, baseProd: 25000, color: "var(--prime-color)" },
-    { id: 12, name: "やさしい理系数学", currency: "prime", baseCost: 15000000, baseProd: 200000, color: "var(--prime-color)" },
+  <!-- トースト通知メッセージ -->
+  <div
+    id="toast"
+    role="status"
+    aria-live="polite"
+    class="safe-bottom-toast fixed left-1/2 -translate-x-1/2 bg-[#1b365d] text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50 whitespace-nowrap"
+  >
+    保存しました
+  </div>
 
-    // プログレス (国語・総合)
-    { id: 13, name: "古文単語345", currency: "progress", baseCost: 15, baseProd: 1, color: "var(--progress-color)" },
-    { id: 14, name: "明快古典文法", currency: "progress", baseCost: 300, baseProd: 20, color: "var(--progress-color)" },
-    { id: 15, name: "ちくま小説選", currency: "progress", baseCost: 7000, baseProd: 350, color: "var(--progress-color)" },
-    { id: 16, name: "名問の森", currency: "progress", baseCost: 120000, baseProd: 4500, color: "var(--progress-color)" },
-    { id: 17, name: "赤本", currency: "progress", baseCost: 3000000, baseProd: 75000, color: "var(--progress-color)" }
-];
+  <script>
+    /**
+     * 第3回 定期考査（2026年11月・高校1年）初期データ
+     * 画像の提出課題・注意事項および1日目〜3日目の全試験範囲を漏れなく収録
+     */
+    const INITIAL_TODOS = [
+      // ==========================================
+      // 【提出課題・注意事項】
+      // ==========================================
+      {
+        id: 'sub-1',
+        section: 'submission',
+        subject: '論理・表現I',
+        badge: '11/18提出',
+        badgeStyle: 'urgent',
+        text: 'ワークブック p.33〜52（11/18提出）',
+        completed: false
+      },
+      {
+        id: 'sub-2',
+        section: 'submission',
+        subject: 'SS数学',
+        badge: '試験終了後提出',
+        badgeStyle: 'urgent',
+        text: 'プライム② p.1〜60（試験終了後提出）',
+        completed: false
+      },
+      {
+        id: 'sub-3',
+        section: 'submission',
+        subject: '現代の国語',
+        badge: '考査終了後提出',
+        badgeStyle: 'urgent',
+        text: '事前に解答・採点し、考査終了後提出',
+        completed: false
+      },
+      {
+        id: 'sub-4',
+        section: 'submission',
+        subject: '英語',
+        badge: '11/20提出',
+        badgeStyle: 'urgent',
+        text: 'サイドリーダーの設問集（11/20提出）',
+        completed: false
+      },
+      {
+        id: 'sub-5',
+        section: 'submission',
+        subject: 'SS物理',
+        badge: '試験後課題',
+        badgeStyle: 'warn',
+        text: '提出課題なし。試験後、得点率の低い問題10問を解き直す（全員）',
+        completed: false
+      },
+      {
+        id: 'sub-6',
+        section: 'submission',
+        subject: 'SS物理・生物',
+        badge: '注意',
+        badgeStyle: 'warn',
+        text: '【注意】SS物理：定規を持参。生物は一部マークシート',
+        completed: false
+      },
 
-const CURRENCY_COLORS = {
-    litera: "var(--litera-color)",
-    prime: "var(--prime-color)",
-    progress: "var(--progress-color)",
-    legend: "var(--legend-color)"
-};
+      // ==========================================
+      // 【11月18日（水）｜1日目】
+      // ==========================================
+      // 論理・表現I
+      {
+        id: 'd1-ronri-1',
+        section: 'day1',
+        subject: '論理・表現I',
+        text: 'Vision Quest I：Lesson 5-① (p.37) 〜 Lesson 7-① (p.59)',
+        completed: false
+      },
+      {
+        id: 'd1-ronri-2',
+        section: 'day1',
+        subject: '論理・表現I',
+        text: '内容：助動詞・受動態・不定詞',
+        completed: false
+      },
+      {
+        id: 'd1-ronri-3',
+        section: 'day1',
+        subject: '論理・表現I',
+        text: 'ワークブック：p.33〜52 ／ 暗誦構文：No.61〜90',
+        completed: false
+      },
+      {
+        id: 'd1-ronri-4',
+        section: 'day1',
+        subject: '論理・表現I',
+        text: 'エッセイライティング',
+        completed: false
+      },
+      // 言語文化
+      {
+        id: 'd1-gengo-1',
+        section: 'day1',
+        subject: '言語文化',
+        badge: '未確認',
+        badgeStyle: 'warn',
+        text: '試験範囲の資料は未確認',
+        completed: false
+      },
+      // SS物理
+      {
+        id: 'd1-butsuri-1',
+        section: 'day1',
+        subject: 'SS物理',
+        text: '教科書：p.90〜130 ／ セミナー物理基礎：p.38〜75',
+        completed: false
+      },
+      {
+        id: 'd1-butsuri-2',
+        section: 'day1',
+        subject: 'SS物理',
+        badge: '範囲外注意',
+        badgeStyle: 'info',
+        text: '「物理」マークの問題は対象外',
+        completed: false
+      },
+      {
+        id: 'd1-butsuri-3',
+        section: 'day1',
+        subject: 'SS物理',
+        text: '運動方程式：摩擦なしの復習問題が出る可能性あり',
+        completed: false
+      },
 
-// 8 Efficiency Skills
-const SKILLS = [
-    { id: 0, name: "集中暗記", costCurrency: "litera", cost: 50, duration: 10, type: "clickBoost", power: 5, desc: "10秒間、タップ獲得量が 5倍 に上昇" },
-    { id: 1, name: "高速計算", costCurrency: "prime", cost: 50, duration: 10, type: "prodBoost", power: 5, desc: "10秒間、全生産力が 5倍 にブースト" },
-    { id: 2, name: "文脈理解", costCurrency: "progress", cost: 50, duration: 10, type: "timeSkip", power: 30, desc: "即座に 30秒分 の生産報酬を獲得" },
-    { id: 3, name: "模擬試験", costCurrency: "litera", cost: 500, duration: 15, type: "clickBoost", power: 20, desc: "15秒間、タップ獲得量が 20倍 に上昇" },
-    { id: 4, name: "解法パターン化", costCurrency: "prime", cost: 500, duration: 15, type: "prodBoost", power: 20, desc: "15秒間、全生産力が 20倍 にブースト" },
-    { id: 5, name: "全神貫注", costCurrency: "progress", cost: 500, duration: 15, type: "timeSkip", power: 120, desc: "即座に 2分分 の生産報酬を獲得" },
-    { id: 6, name: "ゾーン突入", costCurrency: "litera", cost: 5000, duration: 20, type: "allBoost", power: 50, desc: "20秒間、全ての生産とタップが 50倍" },
-    { id: 7, name: "アカシック領域", costCurrency: "legend", cost: 1, duration: 20, type: "allBoost", power: 200, desc: "20秒間、全ての生産とタップが 200倍" }
-];
+      // ==========================================
+      // 【11月19日（木）｜2日目】
+      // ==========================================
+      // SS数学
+      {
+        id: 'd2-sugaku-1',
+        section: 'day2',
+        subject: 'SS数学',
+        text: '数学A教科書：p.7〜112',
+        completed: false
+      },
+      {
+        id: 'd2-sugaku-2',
+        section: 'day2',
+        subject: 'SS数学',
+        text: 'プライム① 場合の数と確率：p.1〜92',
+        completed: false
+      },
+      {
+        id: 'd2-sugaku-3',
+        section: 'day2',
+        subject: 'SS数学',
+        text: 'プライム② 図形の性質：p.1〜60',
+        completed: false
+      },
+      // SS生物（生物基礎）
+      {
+        id: 'd2-seibutsu-1',
+        section: 'day2',
+        subject: 'SS生物（生物基礎）',
+        text: '知識：教科書 p.10〜141 ／ 思考：p.96〜141',
+        completed: false
+      },
+      {
+        id: 'd2-seibutsu-2',
+        section: 'day2',
+        subject: 'SS生物（生物基礎）',
+        text: '思考分野：遺伝（後半）・体内環境',
+        completed: false
+      },
+      {
+        id: 'd2-seibutsu-3',
+        section: 'day2',
+        subject: 'SS生物（生物基礎）',
+        text: '知識：教科書準拠プリント等',
+        completed: false
+      },
+      {
+        id: 'd2-seibutsu-4',
+        section: 'day2',
+        subject: 'SS生物（生物基礎）',
+        text: '思考：リードα基本例題・リードC〜Dまたは類題',
+        completed: false
+      },
+      {
+        id: 'd2-seibutsu-5',
+        section: 'day2',
+        subject: 'SS生物（生物基礎）',
+        badge: '補足',
+        badgeStyle: 'info',
+        text: '一部マークシート。進度により範囲短縮の可能性あり',
+        completed: false
+      },
 
-// --- Safe Formatter ---
-function format(num) {
-    if (!isFinite(num) || isNaN(num) || num === null || num === undefined) return "0";
-    if (num < 0) return "0";
-    if (num < 1000) return num.toFixed(0);
-    
-    const suffixes = ["", "k", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc"];
-    const i = Math.floor(Math.log10(num) / 3);
-    if (i >= suffixes.length) return num.toExponential(2);
-    
-    const formatted = (num / Math.pow(10, i * 3)).toFixed(2);
-    return `${formatted}${suffixes[i]}`;
-}
+      // ==========================================
+      // 【11月20日（金）｜3日目】
+      // ==========================================
+      // 現代の国語
+      {
+        id: 'd3-gendaibun-1',
+        section: 'day3',
+        subject: '現代の国語',
+        text: 'リテラ：Lesson 11〜15 (p.48〜67)',
+        completed: false
+      },
+      {
+        id: 'd3-gendaibun-2',
+        section: 'day3',
+        subject: '現代の国語',
+        text: 'ちくま小説選 (p.61〜97)：森鷗外「普請中」／稲垣足穂「七話集」',
+        completed: false
+      },
+      {
+        id: 'd3-gendaibun-3',
+        section: 'day3',
+        subject: '現代の国語',
+        text: '谷崎潤一郎「秘密」／高橋源一郎「さよならクリストファー・ロビン」',
+        completed: false
+      },
+      {
+        id: 'd3-gendaibun-4',
+        section: 'day3',
+        subject: '現代の国語',
+        text: '入試 漢字・語彙2700：ラウンド3 (p.64〜91)',
+        completed: false
+      },
+      // 英語コミュニケーションI
+      {
+        id: 'd3-eigo-1',
+        section: 'day3',
+        subject: '英語コミュニケーションI',
+        text: 'Crown English Communication I：Lesson 5・6',
+        completed: false
+      },
+      {
+        id: 'd3-eigo-2',
+        section: 'day3',
+        subject: '英語コミュニケーションI',
+        text: 'O. Henry：『The Church with an Overshot-Wheel』',
+        completed: false
+      },
+      {
+        id: 'd3-eigo-3',
+        section: 'day3',
+        subject: '英語コミュニケーションI',
+        text: 'Oscar Wilde：『The Selfish Giant』',
+        completed: false
+      },
+      {
+        id: 'd3-eigo-4',
+        section: 'day3',
+        subject: '英語コミュニケーションI',
+        text: 'ターゲット：Section 1〜14（単語 No.1〜1400）',
+        completed: false
+      },
+      {
+        id: 'd3-eigo-5',
+        section: 'day3',
+        subject: '英語コミュニケーションI',
+        text: 'Listening ／ 応用問題（長文読解）',
+        completed: false
+      }
+    ];
 
-// --- Calculation Core ---
-function getGlobalBoost() {
-    let boost = 1 + (state.legend * 1.0);
-    for (const [id, timer] of Object.entries(state.activeSkills)) {
-        if (timer > 0) {
-            const sk = SKILLS[id];
-            if (sk.type === "prodBoost" || sk.type === "allBoost") {
-                boost *= sk.power;
-            }
+    const STORAGE_KEY = 'teiki_kousa_3rd_2026_todos_v2';
+    let todos = [];
+    let activeFilter = 'all';
+    let toastTimer = null;
+
+    /**
+     * localStorage から安全にデータを読み込む
+     */
+    function loadTodos() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          return JSON.parse(JSON.stringify(INITIAL_TODOS));
         }
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      } catch (err) {
+        console.warn('localStorage load error:', err);
+      }
+      return JSON.parse(JSON.stringify(INITIAL_TODOS));
     }
-    return boost;
-}
 
-function getTapPower() {
-    let baseLiteraProd = 0;
-    FACILITIES.forEach(fac => {
-        if (fac.currency === "litera") {
-            baseLiteraProd += fac.baseProd * (state.facilities[fac.id] || 0);
-        }
-    });
-    let base = 1 + (baseLiteraProd * 0.05);
-
-    let clickBoost = 1;
-    for (const [id, timer] of Object.entries(state.activeSkills)) {
-        if (timer > 0) {
-            const sk = SKILLS[id];
-            if (sk.type === "clickBoost" || sk.type === "allBoost") {
-                clickBoost *= sk.power;
-            }
-        }
-    }
-    return base * clickBoost * getGlobalBoost();
-}
-
-function getProductionRates() {
-    const rates = { litera: 0, prime: 0, progress: 0 };
-    const boost = getGlobalBoost();
-    FACILITIES.forEach(fac => {
-        const count = state.facilities[fac.id] || 0;
-        if (count > 0) {
-            rates[fac.currency] += fac.baseProd * count * boost;
-        }
-    });
-    return rates;
-}
-
-function getBulkCost(fac, amount) {
-    const current = state.facilities[fac.id] || 0;
-    const r = 1.15;
-    if (amount === "MAX") {
-        const userBalance = state[fac.currency] || 0;
-        if (userBalance < fac.baseCost * Math.pow(r, current)) {
-            return { count: 1, cost: fac.baseCost * Math.pow(r, current) };
-        }
-        let n = Math.floor(Math.log(1 + (userBalance * (r - 1)) / (fac.baseCost * Math.pow(r, current))) / Math.log(r));
-        n = Math.max(1, n);
-        const cost = fac.baseCost * (Math.pow(r, current) * (Math.pow(r, n) - 1)) / (r - 1);
-        return { count: n, cost: cost };
-    } else {
-        const n = amount;
-        const cost = fac.baseCost * (Math.pow(r, current) * (Math.pow(r, n) - 1)) / (r - 1);
-        return { count: n, cost: cost };
-    }
-}
-
-// --- 超軽量のヘッダー更新専用関数 ---
-function updateHeaderNumbers() {
-    document.getElementById("val-litera").textContent = format(state.litera);
-    document.getElementById("val-prime").textContent = format(state.prime);
-    document.getElementById("val-progress").textContent = format(state.progress);
-    document.getElementById("val-legend").textContent = format(state.legend);
-}
-
-// --- 全体のUI更新処理 ---
-function renderUI() {
-    updateHeaderNumbers();
-
-    const rates = getProductionRates();
-    document.getElementById("rate-litera").textContent = `${format(rates.litera)}/s`;
-    document.getElementById("rate-prime").textContent = `${format(rates.prime)}/s`;
-    document.getElementById("rate-progress").textContent = `${format(rates.progress)}/s`;
-    document.getElementById("rate-boost").textContent = `+${format(state.legend * 100)}%`;
-
-    const effectsBar = document.getElementById("active-effects-bar");
-    effectsBar.innerHTML = "";
-    for (const [id, timer] of Object.entries(state.activeSkills)) {
-        if (timer > 0) {
-            const sk = SKILLS[id];
-            const badge = document.createElement("div");
-            badge.className = "effect-badge";
-            badge.textContent = `${sk.name} (${Math.ceil(timer)}s)`;
-            effectsBar.appendChild(badge);
-        }
+    /**
+     * localStorage へ安全にデータを保存する
+     */
+    function saveTodos() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+      } catch (err) {
+        console.warn('localStorage save error:', err);
+      }
     }
 
-    // Facilities
-    const facList = document.getElementById("facilities-list");
-    facList.innerHTML = "";
-    FACILITIES.forEach(fac => {
-        const count = state.facilities[fac.id] || 0;
-        const { count: buyCount, cost } = getBulkCost(fac, state.bulk);
-        const canBuy = (state[fac.currency] >= cost);
+    /**
+     * トースト通知を表示する
+     */
+    function showToast(message) {
+      const toastEl = document.getElementById('toast');
+      if (!toastEl) return;
+      toastEl.textContent = message;
+      toastEl.classList.remove('opacity-0');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toastEl.classList.add('opacity-0');
+      }, 2000);
+    }
 
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.opacity = canBuy ? '1' : '0.7';
-        card.innerHTML = `
-            <div class="card-info">
-                <div class="card-title">
-                    ${fac.name} 
-                    <span style="font-size:10px; color: ${fac.color}; opacity:0.9; margin-left: 6px;">(+${format(fac.baseProd)}/s)</span>
-                </div>
-                <div class="card-cost">
-                    Cost: ${format(cost)} <span style="color: ${fac.color};">${fac.currency.toUpperCase()}</span> (${state.bulk === 'MAX' ? 'x' + buyCount : 'x' + state.bulk})
-                </div>
+    /**
+     * リアルタイム日付カウントダウン更新（日付跨ぎ・アプリ復帰時も自動再計算）
+     */
+    function updateCountdown() {
+      const now = new Date();
+      // 時刻のズレによる誤差を防ぐため、当日の0時0分0秒を基準に比較
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const examStart = new Date(2026, 10, 18); // 2026年11月18日（月は0始まりのため10=11月）
+      const examEnd = new Date(2026, 10, 20);   // 2026年11月20日
+
+      // 今日の日付ラベル更新
+      const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+      const dateLabel = document.getElementById('today-date-label');
+      if (dateLabel) {
+        dateLabel.textContent = `今日：${now.getMonth() + 1}月${now.getDate()}日(${weekdays[now.getDay()]})`;
+      }
+
+      const diffDays = Math.round((examStart - today) / (1000 * 60 * 60 * 24));
+      const badge = document.getElementById('countdown-badge');
+      const textEl = document.getElementById('countdown-text');
+      if (!badge || !textEl) return;
+
+      if (diffDays > 0) {
+        textEl.textContent = `考査初日（11/18）まで あと ${diffDays} 日！`;
+        badge.style.backgroundColor = '#e11d48'; // 鮮やかなレッド
+      } else if (today <= examEnd) {
+        const examDay = Math.abs(diffDays) + 1;
+        textEl.textContent = `🔥 第3回 定期考査 ${examDay}日目 実施中！`;
+        badge.style.backgroundColor = '#d97706'; // アンバーオレンジ
+      } else {
+        textEl.textContent = `🎉 第3回 定期考査 お疲れ様でした！`;
+        badge.style.backgroundColor = '#059669'; // エメラルドグリーン
+      }
+    }
+
+    /**
+     * 全体の達成プログレスバーを更新
+     */
+    function updateProgress() {
+      const total = todos.length;
+      const completed = todos.filter(item => item.completed).length;
+      const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+      document.getElementById('completed-count').textContent = completed;
+      document.getElementById('total-count').textContent = total;
+      document.getElementById('progress-percent').textContent = `${percent}%`;
+      document.getElementById('progress-bar').style.width = `${percent}%`;
+    }
+
+    /**
+     * XSS防止用のHTMLエスケープ処理
+     */
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    /**
+     * バッジHTMLの生成
+     */
+    function renderBadge(item) {
+      if (!item.badge) return '';
+      if (item.badgeStyle === 'urgent') {
+        return `<span class="inline-block bg-rose-100 text-rose-700 border border-rose-200 text-[11px] font-extrabold px-2 py-0.5 rounded-md shrink-0">${escapeHtml(item.badge)}</span>`;
+      }
+      if (item.badgeStyle === 'warn') {
+        return `<span class="inline-block bg-amber-100 text-amber-800 border border-amber-300 text-[11px] font-bold px-2 py-0.5 rounded-md shrink-0">${escapeHtml(item.badge)}</span>`;
+      }
+      return `<span class="inline-block bg-sky-100 text-sky-700 border border-sky-200 text-[11px] font-bold px-2 py-0.5 rounded-md shrink-0">${escapeHtml(item.badge)}</span>`;
+    }
+
+    /**
+     * 1行分のTODOカードHTML生成
+     */
+    function renderTodoRow(item) {
+      const isCustom = item.id.startsWith('custom-');
+      const doneClass = item.completed ? 'is-done bg-slate-50 border-slate-200/80' : 'bg-white border-slate-200 hover:border-[#1e73be]';
+      const subBorder = !item.completed && item.section === 'submission' ? 'border-amber-300/90 hover:border-amber-500' : '';
+
+      return `
+        <div
+          class="todo-row flex items-start gap-3 p-3 min-h-[52px] rounded-xl border transition-all cursor-pointer select-none ${doneClass} ${subBorder}"
+          data-id="${escapeHtml(item.id)}"
+          role="checkbox"
+          aria-checked="${item.completed ? 'true' : 'false'}"
+          tabindex="0"
+        >
+          <!-- カスタムチェックボックスアイコン -->
+          <div class="pt-0.5 shrink-0">
+            <div class="w-6 h-6 rounded-lg flex items-center justify-center border-2 transition-colors ${
+              item.completed
+                ? 'bg-[#1e73be] border-[#1e73be] text-white'
+                : 'bg-white border-slate-300'
+            }">
+              ${
+                item.completed
+                  ? `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`
+                  : ''
+              }
             </div>
-            <div class="card-count" style="color: ${fac.color}">${count}</div>
-            <button class="buy-btn" style="background: ${fac.color}; color: #000;" ${canBuy ? '' : 'disabled'} onclick="buyFacility(${fac.id})">
-                購入
-            </button>
+          </div>
+
+          <!-- 本文 -->
+          <div class="todo-body flex-1 min-w-0">
+            ${
+              item.section === 'submission' || item.badge
+                ? `<div class="flex flex-wrap items-center gap-1.5 mb-1">
+                    ${
+                      item.section === 'submission'
+                        ? `<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">${escapeHtml(item.subject)}</span>`
+                        : ''
+                    }
+                    ${renderBadge(item)}
+                  </div>`
+                : ''
+            }
+            <p class="todo-label wrap-anywhere text-sm font-medium text-slate-800 leading-relaxed">
+              ${escapeHtml(item.text)}
+            </p>
+          </div>
+
+          <!-- 追加項目の個別削除ボタン -->
+          ${
+            isCustom
+              ? `<button
+                  type="button"
+                  data-delete-id="${escapeHtml(item.id)}"
+                  aria-label="追加したTODOを削除"
+                  class="delete-btn min-w-[36px] min-h-[36px] -mr-1 -mt-0.5 flex items-center justify-center rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 font-bold text-sm shrink-0 transition"
+                >✕</button>`
+              : ''
+          }
+        </div>
+      `;
+    }
+
+    /**
+     * リスト全体の描画
+     */
+    function render() {
+      updateProgress();
+      const container = document.getElementById('todo-container');
+      if (!container) return;
+
+      // フィルター条件で絞り込み
+      const filtered = todos.filter(item => {
+        if (activeFilter === 'incomplete') return !item.completed;
+        if (activeFilter === 'submission') return item.section === 'submission';
+        if (activeFilter === 'day1') return item.section === 'day1';
+        if (activeFilter === 'day2') return item.section === 'day2';
+        if (activeFilter === 'day3') return item.section === 'day3';
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl p-8 text-center border border-slate-200 shadow-xs">
+            <div class="text-3xl mb-2">🎉</div>
+            <p class="text-sm font-extrabold text-[#1b365d]">表示するTODOはありません</p>
+            <p class="text-xs text-slate-500 mt-1">すべて完了済みか、選択したフィルターに一致する項目がありません。</p>
+          </div>
         `;
-        facList.appendChild(card);
-    });
+        return;
+      }
 
-    // Skills
-    const skillList = document.getElementById("skills-list");
-    skillList.innerHTML = "";
-    SKILLS.forEach(sk => {
-        const isActive = (state.activeSkills[sk.id] || 0) > 0;
-        const activeTimer = state.activeSkills[sk.id] || 0;
-        const canAfford = (state[sk.costCurrency] >= sk.cost);
-        const skillColor = CURRENCY_COLORS[sk.costCurrency] || 'var(--accent-cyan)';
+      let html = '';
 
-        const card = document.createElement("div");
-        card.className = `skill-card ${isActive ? 'is-active' : ''}`;
-        if(isActive) card.style.boxShadow = `0 0 15px ${skillColor}`;
-        card.style.opacity = (!isActive && !canAfford) ? '0.7' : '1';
-        
-        let pct = 0;
-        if (isActive) {
-            pct = (activeTimer / sk.duration) * 100;
-        }
-
-        card.innerHTML = `
-            <div class="card-info">
-                <div class="card-title">
-                    ${sk.name} 
-                    ${isActive ? `<span style="font-size:10px; color: ${skillColor}; opacity: 0.9; margin-left: 6px;">効果発動中 (${Math.ceil(activeTimer)}s)</span>` : ''}
-                </div>
-                <div class="card-sub" style="color: ${skillColor}; opacity: 0.9;">${sk.desc}</div>
-                <div class="card-cost" style="margin-top:4px;">
-                    Cost: ${format(sk.cost)} <span style="color: ${skillColor};">${sk.costCurrency.toUpperCase()}</span>
-                </div>
+      // 1. 【提出課題・注意事項】専用カード
+      const subItems = filtered.filter(i => i.section === 'submission');
+      if (subItems.length > 0) {
+        const subDone = subItems.filter(i => i.completed).length;
+        html += `
+          <section class="bg-[#fffbeb] rounded-2xl p-3.5 sm:p-4 border-2 border-amber-300 shadow-xs">
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <h2 class="text-sm sm:text-base font-extrabold text-amber-950 flex items-center gap-1.5">
+                <span>🚨</span> 提出課題・注意事項
+              </h2>
+              <span class="text-xs font-extrabold text-amber-900 bg-amber-200/80 px-2.5 py-0.5 rounded-full shrink-0">
+                ${subDone} / ${subItems.length} 完了
+              </span>
             </div>
-            <button class="buy-btn" style="background: ${skillColor}; color: #000;" ${(!isActive && canAfford) ? '' : 'disabled'} onclick="useSkill(${sk.id})">
-                ${isActive ? '発動中' : '発動'}
-            </button>
-            <div class="skill-progress-bar" style="width: ${pct}%; background: ${skillColor}; box-shadow: 0 0 8px ${skillColor};"></div>
+            <div class="space-y-2">
+              ${subItems.map(renderTodoRow).join('')}
+            </div>
+          </section>
         `;
-        skillList.appendChild(card);
+      }
+
+      // 2. 日程別セクション（1日目〜3日目）
+      const dayConfigs = [
+        {
+          key: 'day1',
+          title: '11月18日（水）｜1日目',
+          subjects: ['論理・表現I', '言語文化', 'SS物理']
+        },
+        {
+          key: 'day2',
+          title: '11月19日（木）｜2日目',
+          subjects: ['SS数学', 'SS生物（生物基礎）']
+        },
+        {
+          key: 'day3',
+          title: '11月20日（金）｜3日目',
+          subjects: ['現代の国語', '英語コミュニケーションI']
+        }
+      ];
+
+      dayConfigs.forEach(dayCfg => {
+        const dayItems = filtered.filter(i => i.section === dayCfg.key);
+        if (dayItems.length === 0) return;
+
+        const dayDone = dayItems.filter(i => i.completed).length;
+        let subjectCardsHtml = '';
+
+        dayCfg.subjects.forEach(subj => {
+          const subjItems = dayItems.filter(i => i.subject === subj);
+          if (subjItems.length === 0) return;
+
+          const subjDone = subjItems.filter(i => i.completed).length;
+          subjectCardsHtml += `
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+              <div class="bg-[#eef5fc] border-b border-slate-200 px-3.5 py-2.5 flex items-center justify-between gap-2">
+                <h3 class="text-xs sm:text-sm font-extrabold text-[#1b365d]">${escapeHtml(subj)}</h3>
+                <span class="text-[11px] font-bold text-[#1e73be] bg-white px-2 py-0.5 rounded-full border border-sky-200 shrink-0">
+                  ${subjDone} / ${subjItems.length} 完了
+                </span>
+              </div>
+              <div class="p-2.5 sm:p-3 space-y-2">
+                ${subjItems.map(renderTodoRow).join('')}
+              </div>
+            </div>
+          `;
+        });
+
+        html += `
+          <section class="space-y-2.5">
+            <div class="blue-day-banner text-white px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base shadow-xs flex items-center justify-between gap-2">
+              <span>📅 ${escapeHtml(dayCfg.title)}</span>
+              <span class="text-xs font-bold bg-white/20 px-2.5 py-0.5 rounded-full shrink-0">
+                ${dayDone} / ${dayItems.length}
+              </span>
+            </div>
+            <div class="space-y-3">
+              ${subjectCardsHtml}
+            </div>
+          </section>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    /**
+     * 各種イベントリスナーの登録
+     */
+    function bindEvents() {
+      const container = document.getElementById('todo-container');
+
+      // チェック切り替え＆個別削除（クリック）
+      container.addEventListener('click', (e) => {
+        const delBtn = e.target.closest('.delete-btn');
+        if (delBtn) {
+          e.stopPropagation();
+          const delId = delBtn.getAttribute('data-delete-id');
+          todos = todos.filter(item => item.id !== delId);
+          saveTodos();
+          render();
+          showToast('追加したTODOを削除しました');
+          return;
+        }
+
+        const row = e.target.closest('.todo-row');
+        if (row) {
+          const id = row.getAttribute('data-id');
+          const target = todos.find(item => item.id === id);
+          if (target) {
+            target.completed = !target.completed;
+            saveTodos();
+            render();
+          }
+        }
+      });
+
+      // キーボード操作（Space / Enter）対応
+      container.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          const row = e.target.closest('.todo-row');
+          if (row) {
+            e.preventDefault();
+            row.click();
+          }
+        }
+      });
+
+      // フィルタータブ切り替え
+      document.getElementById('filter-tabs').addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+
+        activeFilter = btn.getAttribute('data-filter');
+
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          const f = b.getAttribute('data-filter');
+          if (f === 'submission') {
+            b.className = 'filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100 transition';
+          } else {
+            b.className = 'filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+          }
+        });
+
+        btn.className = 'filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-[#1e73be] text-white shadow-xs transition';
+        render();
+      });
+
+      // 新規TODO・範囲追記フォーム送信
+      document.getElementById('add-todo-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const cat = document.getElementById('new-category').value;
+        const input = document.getElementById('new-text');
+        // 全角・半角スペースのみの空入力を防止
+        const cleanedText = input.value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
+
+        if (!cleanedText) {
+          showToast('内容を入力してください');
+          input.focus();
+          return;
+        }
+
+        const categoryMap = {
+          'day1-gengo': { section: 'day1', subject: '言語文化', badge: '追記範囲', badgeStyle: 'info' },
+          'day1-ronri': { section: 'day1', subject: '論理・表現I', badge: '追加TODO', badgeStyle: 'info' },
+          'day1-butsuri': { section: 'day1', subject: 'SS物理', badge: '追加TODO', badgeStyle: 'info' },
+          'day2-sugaku': { section: 'day2', subject: 'SS数学', badge: '追加TODO', badgeStyle: 'info' },
+          'day2-seibutsu': { section: 'day2', subject: 'SS生物（生物基礎）', badge: '追加TODO', badgeStyle: 'info' },
+          'day3-gendaibun': { section: 'day3', subject: '現代の国語', badge: '追加TODO', badgeStyle: 'info' },
+          'day3-eigo': { section: 'day3', subject: '英語コミュニケーションI', badge: '追加TODO', badgeStyle: 'info' },
+          'submission': { section: 'submission', subject: '追加課題・注意', badge: '追加提出', badgeStyle: 'urgent' }
+        };
+
+        const meta = categoryMap[cat] || categoryMap['day1-gengo'];
+        todos.push({
+          id: 'custom-' + Date.now(),
+          section: meta.section,
+          subject: meta.subject,
+          badge: meta.badge,
+          badgeStyle: meta.badgeStyle,
+          text: cleanedText,
+          completed: false
+        });
+
+        input.value = '';
+        saveTodos();
+        render();
+        showToast('リストに追加しました！');
+      });
+
+      // リセット確認モーダル制御
+      const modal = document.getElementById('confirm-modal');
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+
+      document.getElementById('modal-cancel').addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      });
+
+      // モーダル背景タップで閉じる
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      });
+
+      document.getElementById('modal-confirm').addEventListener('click', () => {
+        todos = JSON.parse(JSON.stringify(INITIAL_TODOS));
+        saveTodos();
+        render();
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        showToast('初期状態にリセットしました');
+      });
+
+      // 日付変更のリアルタイム検知（アプリ再表示時・フォーカス時・1分ごとの定期チェック）
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+          updateCountdown();
+        }
+      });
+      window.addEventListener('focus', updateCountdown);
+      window.addEventListener('pageshow', updateCountdown);
+      setInterval(updateCountdown, 60000);
+    }
+
+    // アプリ起動
+    window.addEventListener('DOMContentLoaded', () => {
+      todos = loadTodos();
+      updateCountdown();
+      bindEvents();
+      render();
     });
-
-    const pendingLegend = Math.floor(Math.pow(state.totalLiteraEarned / 1e6, 0.5));
-    document.getElementById("pending-legend").textContent = `+${format(pendingLegend)}`;
-    document.getElementById("prestige-btn").disabled = (pendingLegend <= 0);
-}
-
-// --- タップ処理 ---
-function tap(e) {
-    if (e && e.cancelable) e.preventDefault(); 
-    
-    const power = getTapPower();
-    state.litera += power;
-    state.totalLiteraEarned += power;
-
-    const rect = document.getElementById("main-tap-btn").getBoundingClientRect();
-    let x, y;
-    if (e && (e.clientX || e.touches)) {
-        x = e.clientX || (e.touches && e.touches[0].clientX) || (rect.left + rect.width / 2);
-        y = e.clientY || (e.touches && e.touches[0].clientY) || (rect.top + rect.height / 2);
-    } else {
-        x = rect.left + rect.width / 2;
-        y = rect.top + rect.height / 2;
-    }
-
-    const txt = document.createElement("div");
-    txt.className = "click-text";
-    txt.textContent = `+${format(power)}`;
-    txt.style.left = `${x - 15}px`;
-    txt.style.top = `${y - 20}px`;
-    document.body.appendChild(txt);
-
-    setTimeout(() => txt.remove(), 800);
-    
-    updateHeaderNumbers();
-}
-
-function buyFacility(id) {
-    const fac = FACILITIES[id];
-    const { count, cost } = getBulkCost(fac, state.bulk);
-    
-    if (state[fac.currency] >= cost) {
-        state[fac.currency] -= cost;
-        state.facilities[id] = (state.facilities[id] || 0) + count;
-        renderUI();
-    }
-}
-
-function useSkill(id) {
-    const sk = SKILLS[id];
-    if ((state.activeSkills[id] || 0) <= 0 && state[sk.costCurrency] >= sk.cost) {
-        state[sk.costCurrency] -= sk.cost;
-
-        if (sk.type === "timeSkip") {
-            const rates = getProductionRates();
-            state.litera += rates.litera * sk.power;
-            state.prime += rates.prime * sk.power;
-            state.progress += rates.progress * sk.power;
-            state.totalLiteraEarned += rates.litera * sk.power;
-        } else {
-            state.activeSkills[id] = sk.duration;
-        }
-        renderUI();
-    }
-}
-
-function doPrestige() {
-    const pending = Math.floor(Math.pow(state.totalLiteraEarned / 1e6, 0.5));
-    if (pending > 0) {
-        state.legend += pending;
-        state.litera = 0;
-        state.prime = 0;
-        state.progress = 0;
-        state.facilities = Array(18).fill(0);
-        state.activeSkills = {};
-        renderUI();
-    }
-}
-
-function setBulk(val, btn) {
-    state.bulk = val;
-    document.querySelectorAll(".bulk-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    renderUI();
-}
-
-function switchTab(tabId) {
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-    
-    event.target.classList.add("active");
-    document.getElementById(`panel-${tabId}`).classList.add("active");
-}
-
-function devCheat() {
-    state.litera += 100000000;
-    state.prime += 100000000;
-    state.progress += 100000000;
-    state.totalLiteraEarned += 100000000;
-    renderUI();
-}
-
-// --- Main Loop ---
-let lastTime = performance.now();
-let lastRenderTime = 0;
-
-function gameLoop(now) {
-    const dt = (now - lastTime) / 1000;
-    lastTime = now;
-
-    const rates = getProductionRates();
-    state.litera += rates.litera * dt;
-    state.prime += rates.prime * dt;
-    state.progress += rates.progress * dt;
-    state.totalLiteraEarned += rates.litera * dt;
-
-    for (const [id, timer] of Object.entries(state.activeSkills)) {
-        if (timer > 0) {
-            state.activeSkills[id] = Math.max(0, timer - dt);
-        }
-    }
-
-    if (now - lastRenderTime > 100) {
-        renderUI();
-        lastRenderTime = now;
-    } else {
-        updateHeaderNumbers();
-    }
-
-    requestAnimationFrame(gameLoop);
-}
-
-// Init & Events
-const mainBtn = document.getElementById("main-tap-btn");
-mainBtn.addEventListener("pointerdown", tap);
-mainBtn.addEventListener("touchstart", (e) => { if(e.cancelable) e.preventDefault(); }, {passive: false});
-
-renderUI();
-requestAnimationFrame(gameLoop);
-</script>
+  </script>
 </body>
 </html>
