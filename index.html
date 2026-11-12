@@ -2,17 +2,16 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <!-- viewport-fit=cover で iPhone のノッチ・下部バー領域まで適切にレイアウト -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="定期考査TODO" />
   <meta name="theme-color" content="#1b365d" />
-  <title>第3回 定期考査 TODOリスト｜高校1年</title>
+  <title>第3回 定期考査 TODOリスト</title>
 
-  <!-- インラインSVGによるホーム画面用アプリアイコン（画像ファイル不要・ネイビー×ブルー） -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231b365d'/%3E%3Cstop offset='100%25' stop-color='%231e73be'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' fill='url(%23bg)'/%3E%3Crect x='34' y='30' width='112' height='124' rx='18' fill='%23ffffff'/%3E%3Crect x='62' y='20' width='56' height='18' rx='9' fill='%23f59e0b'/%3E%3Cpath d='M54 68 L66 80 L86 58' fill='none' stroke='%231e73be' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='64' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Cpath d='M54 102 L66 114 L86 92' fill='none' stroke='%2310b981' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='98' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Ccircle cx='66' cy='133' r='6' fill='%23f59e0b'/%3E%3Crect x='82' y='129' width='48' height='8' rx='4' fill='%2394a3b8'/%3E%3C/svg%3E" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231b365d'/%3E%3Cstop offset='100%25' stop-color='%231e73be'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='36' fill='url(%23bg)'/%3E%3Crect x='34' y='30' width='112' height='124' rx='18' fill='%23ffffff'/%3E%3Crect x='62' y='20' width='56' height='18' rx='9' fill='%23f59e0b'/%3E%3Cpath d='M54 68 L66 80 L86 58' fill='none' stroke='%231e73be' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='64' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Cpath d='M54 102 L66 114 L86 92' fill='none' stroke='%2310b981' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='98' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3C/svg%3E" />
+  <!-- インラインSVGアプリアイコン（画像ファイル不要・ネイビー×ブルー） -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231b365d'/%3E%3Cstop offset='100%25' stop-color='%230077c8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' fill='url(%23bg)'/%3E%3Crect x='34' y='30' width='112' height='124' rx='18' fill='%23ffffff'/%3E%3Crect x='62' y='20' width='56' height='18' rx='9' fill='%23f59e0b'/%3E%3Cpath d='M54 68 L66 80 L86 58' fill='none' stroke='%230077c8' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='64' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Cpath d='M54 102 L66 114 L86 92' fill='none' stroke='%2310b981' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='98' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Ccircle cx='66' cy='133' r='6' fill='%23f59e0b'/%3E%3Crect x='82' y='129' width='48' height='8' rx='4' fill='%2394a3b8'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231b365d'/%3E%3Cstop offset='100%25' stop-color='%230077c8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='36' fill='url(%23bg)'/%3E%3Crect x='34' y='30' width='112' height='124' rx='18' fill='%23ffffff'/%3E%3Crect x='62' y='20' width='56' height='18' rx='9' fill='%23f59e0b'/%3E%3Cpath d='M54 68 L66 80 L86 58' fill='none' stroke='%230077c8' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='64' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3Cpath d='M54 102 L66 114 L86 92' fill='none' stroke='%2310b981' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='98' y='98' width='32' height='8' rx='4' fill='%23cbd5e1'/%3E%3C/svg%3E" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +22,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* ベーススタイル & iOS Safari バグ対策 */
     html, body {
       font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #f0f4f8;
@@ -33,7 +31,7 @@
       touch-action: manipulation;
     }
 
-    /* iPhone Safari でフォームタップ時に勝手な画面ズームが発生するのを防止（16px以上必須） */
+    /* iPhone Safari 入力ズーム防止（16px必須） */
     input, select, textarea {
       font-size: 16px !important;
     }
@@ -49,30 +47,35 @@
       bottom: calc(1.25rem + env(safe-area-inset-bottom));
     }
 
-    /* ネイビー×ブルーのブランドカラー */
+    /* 学術ネイビー×ブルーテーマ */
     .navy-header {
-      background: linear-gradient(135deg, #1b365d 0%, #152b4a 100%);
+      background: linear-gradient(135deg, #1b365d 0%, #142947 100%);
     }
     .blue-day-banner {
-      background: linear-gradient(90deg, #1e73be 0%, #2684d6 100%);
+      background: linear-gradient(90deg, #0077c8 0%, #1a8cd8 100%);
     }
 
-    /* 長い英文や記号のはみ出し防止 */
+    /* 長文折り返し */
     .wrap-anywhere {
       overflow-wrap: anywhere;
       word-break: break-word;
     }
 
-    /* チェック完了時のスタイル */
+    /* チェック完了時の打ち消し線アニメーション */
+    .todo-label {
+      position: relative;
+      transition: color 0.25s ease;
+    }
     .todo-row.is-done .todo-label {
       text-decoration: line-through;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: #94a3b8;
       color: #94a3b8;
     }
     .todo-row.is-done .todo-body {
       opacity: 0.72;
     }
 
-    /* 横スクロールタブのスクロールバー非表示 */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -84,15 +87,14 @@
 </head>
 <body class="safe-bottom-body antialiased selection:bg-sky-200 selection:text-slate-900">
 
-  <!-- 統合スティッキーヘッダー（ヘッダー＋フィルターを1つにまとめ重なりバグを防止） -->
+  <!-- スティッキーヘッダー＆フィルター -->
   <div class="sticky top-0 z-30 shadow-md">
     <header class="navy-header safe-top-header text-white px-4 pb-3.5">
       <div class="max-w-2xl mx-auto">
-        <!-- タイトル＆今日の日付 -->
         <div class="flex items-center justify-between gap-2 mb-1">
           <div class="flex items-center gap-2 text-xs text-sky-200 font-semibold">
             <span class="bg-white/15 px-2 py-0.5 rounded-md">高校1年</span>
-            <span>2026年11月</span>
+            <span>2026年11月18日〜20日</span>
           </div>
           <span id="today-date-label" class="text-[11px] text-sky-200/90 font-medium"></span>
         </div>
@@ -137,7 +139,7 @@
         <button
           type="button"
           data-filter="all"
-          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-[#1e73be] text-white shadow-xs transition"
+          class="filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-[#0077c8] text-white shadow-xs transition"
         >
           すべて
         </button>
@@ -183,32 +185,32 @@
   <!-- メインTODOリスト表示エリア -->
   <main id="todo-container" class="max-w-2xl mx-auto px-3 sm:px-4 pt-4 space-y-5"></main>
 
-  <!-- 範囲・TODO追記フォーム（言語文化の未確認範囲判明時などに使用） -->
+  <!-- カスタムTODO・範囲追記フォーム -->
   <section class="max-w-2xl mx-auto px-3 sm:px-4 mt-6">
     <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-xs border border-slate-200">
       <h2 class="text-sm sm:text-base font-extrabold text-[#1b365d] mb-1 flex items-center gap-1.5">
-        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#1e73be] text-white text-xs">＋</span>
-        試験範囲・TODOを追記する
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#0077c8] text-white text-xs">＋</span>
+        提出物・試験範囲を追記する
       </h2>
       <p class="text-xs text-slate-500 mb-3">
-        未確認だった「言語文化」の試験範囲が分かった時や、自分の復習タスクを追加したい時に使えます。
+        追加の連絡事項や自分の復習タスクをカテゴリー別に登録できます。
       </p>
 
       <form id="add-todo-form" class="space-y-3">
         <div>
-          <label for="new-category" class="block text-xs font-bold text-slate-600 mb-1">追加先の科目・区分</label>
+          <label for="new-category" class="block text-xs font-bold text-slate-600 mb-1">追加先のカテゴリー</label>
           <select
             id="new-category"
-            class="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#1e73be] focus:border-[#1e73be]"
+            class="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0077c8] focus:border-[#0077c8]"
           >
-            <option value="day1-gengo" selected>1日目（11/18）：言語文化</option>
-            <option value="day1-ronri">1日目（11/18）：論理・表現I</option>
+            <option value="submission" selected>🚨 提出課題・注意事項</option>
+            <option value="day1-ronri">1日目（11/18）：論理・表現Ⅰ</option>
+            <option value="day1-gengo">1日目（11/18）：言語文化</option>
             <option value="day1-butsuri">1日目（11/18）：SS物理</option>
             <option value="day2-sugaku">2日目（11/19）：SS数学</option>
             <option value="day2-seibutsu">2日目（11/19）：SS生物（生物基礎）</option>
             <option value="day3-gendaibun">3日目（11/20）：現代の国語</option>
-            <option value="day3-eigo">3日目（11/20）：英語コミュニケーションI</option>
-            <option value="submission">🚨 提出課題・注意事項</option>
+            <option value="day3-eigo">3日目（11/20）：英語コミュニケーションⅠ</option>
           </select>
         </div>
 
@@ -217,15 +219,15 @@
           <input
             type="text"
             id="new-text"
-            placeholder="例：言語文化 教科書 p.10〜28 漢文句法"
+            placeholder="例：【国語】漢字プリント 11/20朝提出"
             maxlength="140"
-            class="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e73be] focus:border-[#1e73be]"
+            class="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0077c8] focus:border-[#0077c8]"
           />
         </div>
 
         <button
           type="submit"
-          class="w-full min-h-[46px] bg-[#1e73be] hover:bg-[#175b96] active:scale-[0.99] text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-xs transition"
+          class="w-full min-h-[46px] bg-[#0077c8] hover:bg-[#005fa3] active:scale-[0.99] text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-xs transition"
         >
           TODOリストに追加する
         </button>
@@ -234,18 +236,18 @@
 
     <!-- フッター操作（リセットボタン） -->
     <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 px-1 text-xs text-slate-500">
-      <span>※チェック状態と追加項目はこのスマホ内に自動保存されます</span>
+      <span>※チェック状態と追加項目はスマホ内に自動保存されます</span>
       <button
         id="reset-btn"
         type="button"
         class="min-h-[40px] px-3.5 py-2 rounded-xl border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold transition"
       >
-        チェック全リセット（初期状態に戻す）
+        チェックをすべてリセット
       </button>
     </div>
   </section>
 
-  <!-- 確認モーダル（window.confirm() の安全な代替UI） -->
+  <!-- 確認モーダル -->
   <div
     id="confirm-modal"
     role="dialog"
@@ -255,10 +257,10 @@
   >
     <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-200">
       <h3 id="modal-title" class="text-base font-extrabold text-[#1b365d] mb-2">
-        チェック全リセットの確認
+        チェックをすべてリセットしますか？
       </h3>
       <p class="text-xs text-slate-600 leading-relaxed mb-5">
-        すべてのチェック状態と自分で追加したTODOを削除し、初期状態に戻しますか？（この操作は元に戻せません）
+        すべてのチェック状態と自分で追加した項目が消去され、初期状態に戻ります。（元に戻せません）
       </p>
       <div class="flex items-center justify-end gap-2.5">
         <button
@@ -279,7 +281,7 @@
     </div>
   </div>
 
-  <!-- トースト通知メッセージ -->
+  <!-- トースト通知 -->
   <div
     id="toast"
     role="status"
@@ -291,265 +293,253 @@
 
   <script>
     /**
-     * 第3回 定期考査（2026年11月・高校1年）初期データ
-     * 画像の提出課題・注意事項および1日目〜3日目の全試験範囲を漏れなく収録
+     * 第3回 定期考査（2026年11月18日〜20日・高校1年）初期タスク定義
+     * 安定したID（id）をキーにして既存のチェック状態を保持しつつ最新項目へ同期する
      */
     const INITIAL_TODOS = [
       // ==========================================
-      // 【提出課題・注意事項】
+      // 【提出課題・注意事項】（最優先セクション）
       // ==========================================
+      {
+        id: 'sub-en-ohenry',
+        section: 'submission',
+        subject: '英語',
+        badge: '11/20提出',
+        badgeStyle: 'urgent',
+        text: '【英語】O-Henry 設問集：全て（11/20提出）',
+        completed: false
+      },
+      {
+        id: 'sub-en-wilde',
+        section: 'submission',
+        subject: '英語',
+        badge: '11/20提出',
+        badgeStyle: 'urgent',
+        text: '【英語】Oscar Wilde 設問集：1つめの物語まで（11/20提出）',
+        completed: false
+      },
       {
         id: 'sub-1',
         section: 'submission',
-        subject: '論理・表現I',
+        subject: '英語',
         badge: '11/18提出',
         badgeStyle: 'urgent',
-        text: 'ワークブック p.33〜52（11/18提出）',
+        text: '【英語】Vision Quest Workbook：～p.52（11/18提出）',
         completed: false
       },
       {
         id: 'sub-2',
         section: 'submission',
-        subject: 'SS数学',
+        subject: '数学',
         badge: '試験終了後提出',
         badgeStyle: 'urgent',
-        text: 'プライム② p.1〜60（試験終了後提出）',
+        text: '【数学】プライム（図形と証明）：～p.60（試験終了後提出）',
+        completed: false
+      },
+      {
+        id: 'sub-ja-kobun',
+        section: 'submission',
+        subject: '国語',
+        badge: '提出物',
+        badgeStyle: 'urgent',
+        text: '【国語】プログレス古文：～p.33',
+        completed: false
+      },
+      {
+        id: 'sub-ja-kanbun',
+        section: 'submission',
+        subject: '国語',
+        badge: '提出物',
+        badgeStyle: 'urgent',
+        text: '【国語】プログレス漢文：～p.33',
         completed: false
       },
       {
         id: 'sub-3',
         section: 'submission',
-        subject: '現代の国語',
+        subject: '国語',
         badge: '考査終了後提出',
         badgeStyle: 'urgent',
-        text: '事前に解答・採点し、考査終了後提出',
-        completed: false
-      },
-      {
-        id: 'sub-4',
-        section: 'submission',
-        subject: '英語',
-        badge: '11/20提出',
-        badgeStyle: 'urgent',
-        text: 'サイドリーダーの設問集（11/20提出）',
+        text: '【国語】リテラ：～p.67（事前に解答・採点し、考査終了後提出）',
         completed: false
       },
       {
         id: 'sub-5',
         section: 'submission',
         subject: 'SS物理',
-        badge: '試験後課題',
+        badge: '注意・試験後課題',
         badgeStyle: 'warn',
-        text: '提出課題なし。試験後、得点率の低い問題10問を解き直す（全員）',
+        text: '【SS物理】提出課題なし（※試験後、得点率の低い問題10問を解き直す・全員／定規を持参）',
         completed: false
       },
       {
         id: 'sub-6',
         section: 'submission',
-        subject: 'SS物理・生物',
+        subject: 'SS生物',
         badge: '注意',
         badgeStyle: 'warn',
-        text: '【注意】SS物理：定規を持参。生物は一部マークシート',
+        text: '【SS生物】一部マークシート（進度により範囲短縮の可能性あり）',
         completed: false
       },
 
       // ==========================================
       // 【11月18日（水）｜1日目】
       // ==========================================
-      // 論理・表現I
       {
         id: 'd1-ronri-1',
         section: 'day1',
-        subject: '論理・表現I',
-        text: 'Vision Quest I：Lesson 5-① (p.37) 〜 Lesson 7-① (p.59)',
+        subject: '論理・表現Ⅰ',
+        text: 'Vision QuestⅠ Lesson 5-① (p.37) ～ Lesson 7-① (p.59)',
         completed: false
       },
       {
         id: 'd1-ronri-2',
         section: 'day1',
-        subject: '論理・表現I',
-        text: '内容：助動詞・受動態・不定詞',
+        subject: '論理・表現Ⅰ',
+        text: '助動詞・受動態・不定詞',
         completed: false
       },
       {
         id: 'd1-ronri-3',
         section: 'day1',
-        subject: '論理・表現I',
-        text: 'ワークブック：p.33〜52 ／ 暗誦構文：No.61〜90',
+        subject: '論理・表現Ⅰ',
+        text: 'ワークブック p.33～52 ／ 暗誦構文 No.61～90',
         completed: false
       },
       {
         id: 'd1-ronri-4',
         section: 'day1',
-        subject: '論理・表現I',
+        subject: '論理・表現Ⅰ',
         text: 'エッセイライティング',
         completed: false
       },
-      // 言語文化
       {
         id: 'd1-gengo-1',
         section: 'day1',
         subject: '言語文化',
-        badge: '未確認',
+        badge: '要確認',
         badgeStyle: 'warn',
-        text: '試験範囲の資料は未確認',
+        text: '試験範囲の資料は未確認（プログレス古文～p.33 / 漢文～p.33等）',
         completed: false
       },
-      // SS物理
       {
         id: 'd1-butsuri-1',
         section: 'day1',
         subject: 'SS物理',
-        text: '教科書：p.90〜130 ／ セミナー物理基礎：p.38〜75',
-        completed: false
-      },
-      {
-        id: 'd1-butsuri-2',
-        section: 'day1',
-        subject: 'SS物理',
-        badge: '範囲外注意',
-        badgeStyle: 'info',
-        text: '「物理」マークの問題は対象外',
+        text: '教科書 p.90～130 ／ セミナー物理基礎 p.38～75（「物理」マーク対象外）',
         completed: false
       },
       {
         id: 'd1-butsuri-3',
         section: 'day1',
         subject: 'SS物理',
-        text: '運動方程式：摩擦なしの復習問題が出る可能性あり',
+        text: '運動方程式（摩擦なしの復習問題の可能性あり）',
         completed: false
       },
 
       // ==========================================
       // 【11月19日（木）｜2日目】
       // ==========================================
-      // SS数学
       {
         id: 'd2-sugaku-1',
         section: 'day2',
         subject: 'SS数学',
-        text: '数学A教科書：p.7〜112',
+        text: '数学A教科書 p.7～112',
         completed: false
       },
       {
         id: 'd2-sugaku-2',
         section: 'day2',
         subject: 'SS数学',
-        text: 'プライム① 場合の数と確率：p.1〜92',
+        text: 'プライム① 場合の数と確率 p.1～92',
         completed: false
       },
       {
         id: 'd2-sugaku-3',
         section: 'day2',
         subject: 'SS数学',
-        text: 'プライム② 図形の性質：p.1〜60',
+        text: 'プライム② 図形の性質（図形と証明） p.1～60',
         completed: false
       },
-      // SS生物（生物基礎）
       {
         id: 'd2-seibutsu-1',
         section: 'day2',
         subject: 'SS生物（生物基礎）',
-        text: '知識：教科書 p.10〜141 ／ 思考：p.96〜141',
-        completed: false
-      },
-      {
-        id: 'd2-seibutsu-2',
-        section: 'day2',
-        subject: 'SS生物（生物基礎）',
-        text: '思考分野：遺伝（後半）・体内環境',
+        text: '知識 教科書 p.10～141 ／ 思考 p.96～141（遺伝後半・体内環境）',
         completed: false
       },
       {
         id: 'd2-seibutsu-3',
         section: 'day2',
         subject: 'SS生物（生物基礎）',
-        text: '知識：教科書準拠プリント等',
+        text: '教科書準拠プリント等',
         completed: false
       },
       {
         id: 'd2-seibutsu-4',
         section: 'day2',
         subject: 'SS生物（生物基礎）',
-        text: '思考：リードα基本例題・リードC〜Dまたは類題',
-        completed: false
-      },
-      {
-        id: 'd2-seibutsu-5',
-        section: 'day2',
-        subject: 'SS生物（生物基礎）',
-        badge: '補足',
-        badgeStyle: 'info',
-        text: '一部マークシート。進度により範囲短縮の可能性あり',
+        text: 'リードα基本例題・リードC～Dまたは類題',
         completed: false
       },
 
       // ==========================================
       // 【11月20日（金）｜3日目】
       // ==========================================
-      // 現代の国語
       {
         id: 'd3-gendaibun-1',
         section: 'day3',
         subject: '現代の国語',
-        text: 'リテラ：Lesson 11〜15 (p.48〜67)',
+        text: 'リテラ Lesson 11～15 (p.48～67)',
         completed: false
       },
       {
         id: 'd3-gendaibun-2',
         section: 'day3',
         subject: '現代の国語',
-        text: 'ちくま小説選 (p.61〜97)：森鷗外「普請中」／稲垣足穂「七話集」',
-        completed: false
-      },
-      {
-        id: 'd3-gendaibun-3',
-        section: 'day3',
-        subject: '現代の国語',
-        text: '谷崎潤一郎「秘密」／高橋源一郎「さよならクリストファー・ロビン」',
+        text: 'ちくま小説選 (p.61～97)：森鷗外「普請中」・稲垣足穂「七話集」・谷崎潤一郎「秘密」・高橋源一郎「さよならクリストファー・ロビン」',
         completed: false
       },
       {
         id: 'd3-gendaibun-4',
         section: 'day3',
         subject: '現代の国語',
-        text: '入試 漢字・語彙2700：ラウンド3 (p.64〜91)',
+        text: '入試 漢字・語彙2700 ラウンド3 (p.64～91)',
         completed: false
       },
-      // 英語コミュニケーションI
       {
         id: 'd3-eigo-1',
         section: 'day3',
-        subject: '英語コミュニケーションI',
-        text: 'Crown English Communication I：Lesson 5・6',
+        subject: '英語コミュニケーションⅠ',
+        text: 'Crown English CommunicationⅠ Lesson 5・6',
         completed: false
       },
       {
         id: 'd3-eigo-2',
         section: 'day3',
-        subject: '英語コミュニケーションI',
-        text: 'O. Henry：『The Church with an Overshot-Wheel』',
+        subject: '英語コミュニケーションⅠ',
+        text: 'O. Henry『The Church with an Overshot-Wheel』',
         completed: false
       },
       {
         id: 'd3-eigo-3',
         section: 'day3',
-        subject: '英語コミュニケーションI',
-        text: 'Oscar Wilde：『The Selfish Giant』',
+        subject: '英語コミュニケーションⅠ',
+        text: 'Oscar Wilde『The Selfish Giant』',
         completed: false
       },
       {
         id: 'd3-eigo-4',
         section: 'day3',
-        subject: '英語コミュニケーションI',
-        text: 'ターゲット：Section 1〜14（単語 No.1〜1400）',
+        subject: '英語コミュニケーションⅠ',
+        text: 'ターゲット Section 1～14（単語 No.1～1400）',
         completed: false
       },
       {
         id: 'd3-eigo-5',
         section: 'day3',
-        subject: '英語コミュニケーションI',
-        text: 'Listening ／ 応用問題（長文読解）',
+        subject: '英語コミュニケーションⅠ',
+        text: 'Listening・応用問題（長文読解）',
         completed: false
       }
     ];
@@ -560,26 +550,45 @@
     let toastTimer = null;
 
     /**
-     * localStorage から安全にデータを読み込む
+     * localStorage から読み込み、既存のチェック状態＆カスタム項目を維持したまま最新定義と同期する
      */
     function loadTodos() {
+      let savedList = [];
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) {
-          return JSON.parse(JSON.stringify(INITIAL_TODOS));
-        }
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            savedList = parsed;
+          }
         }
       } catch (err) {
         console.warn('localStorage load error:', err);
       }
-      return JSON.parse(JSON.stringify(INITIAL_TODOS));
+
+      // 既存のチェック状態を ID ごとにマップ化
+      const completedMap = new Map();
+      const customItems = [];
+      savedList.forEach(item => {
+        if (item && typeof item.id === 'string') {
+          completedMap.set(item.id, Boolean(item.completed));
+          if (item.id.startsWith('custom-')) {
+            customItems.push(item);
+          }
+        }
+      });
+
+      // 標準リストに過去のチェック状態を引き継ぐ
+      const mergedDefaults = INITIAL_TODOS.map(item => ({
+        ...item,
+        completed: completedMap.has(item.id) ? completedMap.get(item.id) : false
+      }));
+
+      return [...mergedDefaults, ...customItems];
     }
 
     /**
-     * localStorage へ安全にデータを保存する
+     * localStorage へ保存
      */
     function saveTodos() {
       try {
@@ -590,7 +599,7 @@
     }
 
     /**
-     * トースト通知を表示する
+     * トースト表示
      */
     function showToast(message) {
       const toastEl = document.getElementById('toast');
@@ -604,16 +613,14 @@
     }
 
     /**
-     * リアルタイム日付カウントダウン更新（日付跨ぎ・アプリ復帰時も自動再計算）
+     * リアルタイム自動カウントダウン（当日0時基準比較）
      */
     function updateCountdown() {
       const now = new Date();
-      // 時刻のズレによる誤差を防ぐため、当日の0時0分0秒を基準に比較
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const examStart = new Date(2026, 10, 18); // 2026年11月18日（月は0始まりのため10=11月）
+      const examStart = new Date(2026, 10, 18); // 2026年11月18日
       const examEnd = new Date(2026, 10, 20);   // 2026年11月20日
 
-      // 今日の日付ラベル更新
       const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
       const dateLabel = document.getElementById('today-date-label');
       if (dateLabel) {
@@ -627,19 +634,19 @@
 
       if (diffDays > 0) {
         textEl.textContent = `考査初日（11/18）まで あと ${diffDays} 日！`;
-        badge.style.backgroundColor = '#e11d48'; // 鮮やかなレッド
+        badge.style.backgroundColor = '#e11d48';
       } else if (today <= examEnd) {
         const examDay = Math.abs(diffDays) + 1;
         textEl.textContent = `🔥 第3回 定期考査 ${examDay}日目 実施中！`;
-        badge.style.backgroundColor = '#d97706'; // アンバーオレンジ
+        badge.style.backgroundColor = '#d97706';
       } else {
         textEl.textContent = `🎉 第3回 定期考査 お疲れ様でした！`;
-        badge.style.backgroundColor = '#059669'; // エメラルドグリーン
+        badge.style.backgroundColor = '#059669';
       }
     }
 
     /**
-     * 全体の達成プログレスバーを更新
+     * 全体進捗バー更新
      */
     function updateProgress() {
       const total = todos.length;
@@ -653,7 +660,7 @@
     }
 
     /**
-     * XSS防止用のHTMLエスケープ処理
+     * HTMLエスケープ
      */
     function escapeHtml(str) {
       return String(str)
@@ -665,7 +672,7 @@
     }
 
     /**
-     * バッジHTMLの生成
+     * バッジ描画
      */
     function renderBadge(item) {
       if (!item.badge) return '';
@@ -679,12 +686,16 @@
     }
 
     /**
-     * 1行分のTODOカードHTML生成
+     * 1行分のTODOカード生成
      */
     function renderTodoRow(item) {
       const isCustom = item.id.startsWith('custom-');
-      const doneClass = item.completed ? 'is-done bg-slate-50 border-slate-200/80' : 'bg-white border-slate-200 hover:border-[#1e73be]';
-      const subBorder = !item.completed && item.section === 'submission' ? 'border-amber-300/90 hover:border-amber-500' : '';
+      const doneClass = item.completed
+        ? 'is-done bg-slate-50 border-slate-200/80'
+        : 'bg-white border-slate-200 hover:border-[#0077c8]';
+      const subBorder = !item.completed && item.section === 'submission'
+        ? 'border-amber-300/90 hover:border-amber-500'
+        : '';
 
       return `
         <div
@@ -694,11 +705,10 @@
           aria-checked="${item.completed ? 'true' : 'false'}"
           tabindex="0"
         >
-          <!-- カスタムチェックボックスアイコン -->
           <div class="pt-0.5 shrink-0">
             <div class="w-6 h-6 rounded-lg flex items-center justify-center border-2 transition-colors ${
               item.completed
-                ? 'bg-[#1e73be] border-[#1e73be] text-white'
+                ? 'bg-[#0077c8] border-[#0077c8] text-white'
                 : 'bg-white border-slate-300'
             }">
               ${
@@ -709,7 +719,6 @@
             </div>
           </div>
 
-          <!-- 本文 -->
           <div class="todo-body flex-1 min-w-0">
             ${
               item.section === 'submission' || item.badge
@@ -728,7 +737,6 @@
             </p>
           </div>
 
-          <!-- 追加項目の個別削除ボタン -->
           ${
             isCustom
               ? `<button
@@ -744,14 +752,13 @@
     }
 
     /**
-     * リスト全体の描画
+     * リスト全体描画
      */
     function render() {
       updateProgress();
       const container = document.getElementById('todo-container');
       if (!container) return;
 
-      // フィルター条件で絞り込み
       const filtered = todos.filter(item => {
         if (activeFilter === 'incomplete') return !item.completed;
         if (activeFilter === 'submission') return item.section === 'submission';
@@ -774,12 +781,12 @@
 
       let html = '';
 
-      // 1. 【提出課題・注意事項】専用カード
+      // 1. 【提出課題・注意事項】セクション
       const subItems = filtered.filter(i => i.section === 'submission');
       if (subItems.length > 0) {
         const subDone = subItems.filter(i => i.completed).length;
         html += `
-          <section class="bg-[#fffbeb] rounded-2xl p-3.5 sm:p-4 border-2 border-amber-300 shadow-xs">
+          <section class="bg-[#fffbeb] rounded-2xl p-3.5 sm:p-4 border-2 border-amber-400 shadow-xs">
             <div class="flex items-center justify-between gap-2 mb-3">
               <h2 class="text-sm sm:text-base font-extrabold text-amber-950 flex items-center gap-1.5">
                 <span>🚨</span> 提出課題・注意事項
@@ -800,7 +807,7 @@
         {
           key: 'day1',
           title: '11月18日（水）｜1日目',
-          subjects: ['論理・表現I', '言語文化', 'SS物理']
+          subjects: ['論理・表現Ⅰ', '言語文化', 'SS物理']
         },
         {
           key: 'day2',
@@ -810,7 +817,7 @@
         {
           key: 'day3',
           title: '11月20日（金）｜3日目',
-          subjects: ['現代の国語', '英語コミュニケーションI']
+          subjects: ['現代の国語', '英語コミュニケーションⅠ']
         }
       ];
 
@@ -828,9 +835,9 @@
           const subjDone = subjItems.filter(i => i.completed).length;
           subjectCardsHtml += `
             <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
-              <div class="bg-[#eef5fc] border-b border-slate-200 px-3.5 py-2.5 flex items-center justify-between gap-2">
+              <div class="bg-[#eef6fc] border-b border-slate-200 px-3.5 py-2.5 flex items-center justify-between gap-2">
                 <h3 class="text-xs sm:text-sm font-extrabold text-[#1b365d]">${escapeHtml(subj)}</h3>
-                <span class="text-[11px] font-bold text-[#1e73be] bg-white px-2 py-0.5 rounded-full border border-sky-200 shrink-0">
+                <span class="text-[11px] font-bold text-[#0077c8] bg-white px-2 py-0.5 rounded-full border border-sky-200 shrink-0">
                   ${subjDone} / ${subjItems.length} 完了
                 </span>
               </div>
@@ -860,12 +867,11 @@
     }
 
     /**
-     * 各種イベントリスナーの登録
+     * イベント登録
      */
     function bindEvents() {
       const container = document.getElementById('todo-container');
 
-      // チェック切り替え＆個別削除（クリック）
       container.addEventListener('click', (e) => {
         const delBtn = e.target.closest('.delete-btn');
         if (delBtn) {
@@ -874,7 +880,7 @@
           todos = todos.filter(item => item.id !== delId);
           saveTodos();
           render();
-          showToast('追加したTODOを削除しました');
+          showToast('追加した項目を削除しました');
           return;
         }
 
@@ -890,7 +896,6 @@
         }
       });
 
-      // キーボード操作（Space / Enter）対応
       container.addEventListener('keydown', (e) => {
         if (e.key === ' ' || e.key === 'Enter') {
           const row = e.target.closest('.todo-row');
@@ -901,7 +906,6 @@
         }
       });
 
-      // フィルタータブ切り替え
       document.getElementById('filter-tabs').addEventListener('click', (e) => {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -917,16 +921,14 @@
           }
         });
 
-        btn.className = 'filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-[#1e73be] text-white shadow-xs transition';
+        btn.className = 'filter-btn min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap bg-[#0077c8] text-white shadow-xs transition';
         render();
       });
 
-      // 新規TODO・範囲追記フォーム送信
       document.getElementById('add-todo-form').addEventListener('submit', (e) => {
         e.preventDefault();
         const cat = document.getElementById('new-category').value;
         const input = document.getElementById('new-text');
-        // 全角・半角スペースのみの空入力を防止
         const cleanedText = input.value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
 
         if (!cleanedText) {
@@ -936,17 +938,17 @@
         }
 
         const categoryMap = {
+          'submission': { section: 'submission', subject: '追加提出物', badge: '追加提出', badgeStyle: 'urgent' },
+          'day1-ronri': { section: 'day1', subject: '論理・表現Ⅰ', badge: '追加TODO', badgeStyle: 'info' },
           'day1-gengo': { section: 'day1', subject: '言語文化', badge: '追記範囲', badgeStyle: 'info' },
-          'day1-ronri': { section: 'day1', subject: '論理・表現I', badge: '追加TODO', badgeStyle: 'info' },
           'day1-butsuri': { section: 'day1', subject: 'SS物理', badge: '追加TODO', badgeStyle: 'info' },
           'day2-sugaku': { section: 'day2', subject: 'SS数学', badge: '追加TODO', badgeStyle: 'info' },
           'day2-seibutsu': { section: 'day2', subject: 'SS生物（生物基礎）', badge: '追加TODO', badgeStyle: 'info' },
           'day3-gendaibun': { section: 'day3', subject: '現代の国語', badge: '追加TODO', badgeStyle: 'info' },
-          'day3-eigo': { section: 'day3', subject: '英語コミュニケーションI', badge: '追加TODO', badgeStyle: 'info' },
-          'submission': { section: 'submission', subject: '追加課題・注意', badge: '追加提出', badgeStyle: 'urgent' }
+          'day3-eigo': { section: 'day3', subject: '英語コミュニケーションⅠ', badge: '追加TODO', badgeStyle: 'info' }
         };
 
-        const meta = categoryMap[cat] || categoryMap['day1-gengo'];
+        const meta = categoryMap[cat] || categoryMap['submission'];
         todos.push({
           id: 'custom-' + Date.now(),
           section: meta.section,
@@ -963,7 +965,6 @@
         showToast('リストに追加しました！');
       });
 
-      // リセット確認モーダル制御
       const modal = document.getElementById('confirm-modal');
       document.getElementById('reset-btn').addEventListener('click', () => {
         modal.classList.remove('hidden');
@@ -975,7 +976,6 @@
         modal.classList.remove('flex');
       });
 
-      // モーダル背景タップで閉じる
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           modal.classList.add('hidden');
@@ -992,7 +992,6 @@
         showToast('初期状態にリセットしました');
       });
 
-      // 日付変更のリアルタイム検知（アプリ再表示時・フォーカス時・1分ごとの定期チェック）
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) {
           updateCountdown();
@@ -1003,9 +1002,9 @@
       setInterval(updateCountdown, 60000);
     }
 
-    // アプリ起動
     window.addEventListener('DOMContentLoaded', () => {
       todos = loadTodos();
+      saveTodos();
       updateCountdown();
       bindEvents();
       render();
